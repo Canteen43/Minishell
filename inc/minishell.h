@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/27 18:30:04 by kweihman         ###   ########.fr       */
+/*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
+/*   Updated: 2024/10/27 18:24:21 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	if (argc == 1)
-		perror("Too few arguments.");
-	if (ft_strcmp(argv[1], "echo")
-	// if argv[1] is not a known command, print error 
-	
-}
+# include <stdio.h>		// For perror()
+
+// Function declarations
+
+#endif // MINISHELL_H
