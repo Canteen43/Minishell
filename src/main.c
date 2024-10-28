@@ -6,11 +6,14 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/28 08:19:14 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/28 08:34:29 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../inc/minishell.h"
+
+// From Libft
+int	ft_strcmp(const char *s1, const char *s2);
 
 int	main(int argc, char **argv, char **envp)
 {

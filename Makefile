@@ -26,8 +26,7 @@ LIB_DIR =	lib/
 
 # Source files
 SRC_FILES += main.c
-
-
+SRC_FILES += builtins/echo.c
 
 # Object files
 OBJ_FILES 		=	$(SRC_FILES:%.c=$(OBJ_DIR)%.o)
