@@ -6,13 +6,13 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:19:20 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 14:38:07 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:39:27 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	f_echo(int argc, char **argv, char **envp)
+void	f_echo(int argc, char **argv)
 {
 	int	i;
 

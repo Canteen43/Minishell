@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 14:38:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:39:39 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 // Function declarations
 // builtins
-void	f_echo(int argc, char **argv, char **envp);
+void	f_echo(int argc, char **argv);
 // Utils
 int		f_strcmp(char *str1, char *str2);
 
