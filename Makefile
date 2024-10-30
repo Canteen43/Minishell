@@ -13,7 +13,7 @@ INCLUDES		:= -Iinc/
 TARGET			:= minishell
 
 # Libraries to be linked (if any)
-LIBS			:=
+LIBS			:= -lreadline
 
 # Source files directory
 SRC_DIR			:= src/

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:35:28 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 15:38:30 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:55:59 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	f_pwd(char *env[])
 	i = 0;
 	while (strncmp(env[i], "PWD=", 4) != 0)
 		i++;
-	printf("Working directory: %s", env[i] + 4);
+	printf("Working directory: %s\n", env[i] + 4);
 	return ;
 }
