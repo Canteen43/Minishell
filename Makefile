@@ -20,6 +20,7 @@ SRC_DIR			:= src/
 # Source files
 SRC_FILES		+= main.c
 SRC_FILES		+= builtins/f_echo.c
+SRC_FILES		+= utils/f_strcmp.c
 
 
 # Object files directory

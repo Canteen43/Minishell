@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   f_strcmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 14:30:55 by kweihman         ###   ########.fr       */
+/*   Created: 2024/10/30 14:24:00 by kweihman          #+#    #+#             */
+/*   Updated: 2024/10/30 14:30:39 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+/*Expects two non-NULL strings and returns str1 minus str2 at the first char
+that differs.*/
+int	f_strcmp(char *str1, char *str2)
 {
-	if (argc == 1)
-		perror("Too few arguments.");
-	if (ft_strcmp(argv[1], "echo") == 0)
-		f_echo(argc, argv, envp);
-	else
-		perror("Command not found.");
-	return (0);
+	while (*str1)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+	}
+	return (*str1 - *str2);
 }
