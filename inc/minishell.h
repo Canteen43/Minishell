@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 14:39:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:42:49 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
 
 // Function declarations
+// core
+void	f_execute(char *line, char *env[]);
 // builtins
-void	f_echo(int argc, char **argv);
-// Utils
+void	f_echo(void);
+void	f_pwd(char *env[]);
+// utils
 int		f_strcmp(char *str1, char *str2);
 
 #endif // MINISHELL_H
