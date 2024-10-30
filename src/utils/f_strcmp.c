@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:24:00 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 14:30:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:51:03 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	f_strcmp(char *str1, char *str2)
 	{
 		if (*str1 != *str2)
 			return (*str1 - *str2);
+		str1++;
+		str2++;
 	}
 	return (*str1 - *str2);
 }
