@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_echo.c                                           :+:      :+:    :+:   */
+/*   f_execute.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 08:19:20 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 15:28:48 by kweihman         ###   ########.fr       */
+/*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
+/*   Updated: 2024/10/30 15:35:23 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
-void	f_echo(char str)
+void	execute(char *line, char *env[])
 {
-	return ;
+	if (strncmp(line, "echo ", 5) == 0)
+		printf("", line + 5);
+	if (strcmp(line, "pwd") == 0)
+		f_pwd(env);
+	if (strcmp(line, "exit") == 0)
+	{
+		printf("Exiting Minishell");
+		exit(0);
+	}
 }

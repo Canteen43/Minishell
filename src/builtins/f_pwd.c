@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_echo.c                                           :+:      :+:    :+:   */
+/*   f_pwd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 08:19:20 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 15:28:48 by kweihman         ###   ########.fr       */
+/*   Created: 2024/10/30 15:35:28 by kweihman          #+#    #+#             */
+/*   Updated: 2024/10/30 15:38:30 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
-void	f_echo(char str)
+void	f_pwd(char *env[])
 {
+	int	i;
+
+	i = 0;
+	while (strncmp(env[i], "PWD=", 4) != 0)
+		i++;
+	printf("Working directory: %s", env[i] + 4);
 	return ;
 }
