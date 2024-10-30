@@ -1,67 +1,119 @@
-# The compiler
-CC =	cc
+#### MAIN SETTINGS ####
+
+# Compiler to be used
+CC				:= cc
 
 # Compiler flags
-CFLAGS :=	-Wall -Wextra -Werror
+CFLAGS			:= -Wall -Werror -Wextra -pedantic -O3
 
-# Debugging (DEBUG=1)
+# Include directories
+INCLUDES		:= -Iinc/
+
+# Target executable
+TARGET			:= minishell
+
+# Libraries to be linked (if any)
+LIBS			:=
+
+# Source files directory
+SRC_DIR			:= src/
+# Source files
+SRC_FILES		+= main.c
+SRC_FILES		+= builtins/f_echo.c
+
+
+# Object files directory
+OBJ_DIR			:= obj/
+# Object files
+OBJ_FILES		:= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_FILES))
+
+
+# Dependency files directory
+DEP_DIR			:= dep/
+# Dependency files
+DEPENDS			:= $(patsubst %.o, $(DEP_DIR)%.d, $(OBJ_FILES))
+-include $(DEPENDS)
+
+#### SHELL COMMANDS ####
+RM				:= /bin/rm -f
+MKDIR			:= /bin/mkdir -p
+TOUCH			:= /bin/touch
+
+#### DEBUG SETTINGS ####
 ifeq ($(DEBUG), 1)
-	CFLAGS		+=	-g3 -O0
+	CFLAGS		+= -g3 -O0
 endif
 
-# Targets
-TARGET =	minishell
+#### TARGET COMPILATION ####
+.DEFAULT_GOAL	:= all
 
-# Directories
-SRC_DIR =	src/
-INC_DIR =	inc/
-OBJ_DIR =	obj/
-LIB_DIR =	lib/
+all: $(TARGET) ## Build this project
 
+# Compilation rule for object files
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@$(MKDIR) $(@D)
+	@echo -n "[build] "
+	$(CC) $(CFLAGS) -MMD -MF $(patsubst %.o, %.d, $@) $(INCLUDES) -c $< -o $@
 
-# My libraries
-LIB1DIR =	Libft/
-LIB2DIR =	FLib/
-LIB1 = libft.a
-LIB2 = flib.a
-MYLIBS +=	$(LIB_DIR)$(LIB2DIR)$(LIB2)
-MYLIBS +=	$(LIB_DIR)$(LIB1DIR)$(LIB1)
+# Rule for linking the target executable
+$(TARGET): $(OBJ_FILES)
+	@echo -n "\n[link] "
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ_FILES) $(LIBS)
+	-@echo -n "🚀 $(MAGENTA)" && ls -lah $(TARGET) && echo -n "$(RESET)"
 
-# Source files
-SRC_FILES += main.c
-SRC_FILES += builtins/echo.c
+#### LOCAL LIBS COMPILATION ####
 
-# Object files
-OBJ_FILES 		=	$(SRC_FILES:%.c=$(OBJ_DIR)%.o)
+#### ADDITIONAL RULES ####
 
-# Rules
-all: $(TARGET)
+clean: ## Clean objects and dependencies
+	@echo -n "[clean] "
+	$(RM) $(OBJ_FILES)
+	@echo -n "[clean] "
+	$(RM) -r $(OBJ_DIR)
+	@echo -n "[clean] "
+	$(RM) $(DEPENDS)
+	@echo -n "[clean] "
+	$(RM) -r $(DEP_DIR)
 
-$(LIB_DIR)$(LIB1DIR)$(LIB1):
-	$(MAKE) -C $(LIB_DIR)$(LIB1DIR) all
+fclean: clean ## Restore project to initial state
+	@echo -n "[fclean] "
+	$(RM) $(TARGET)
 
-$(LIB_DIR)$(LIB2DIR)$(LIB2):
-	$(MAKE) -C $(LIB_DIR)$(LIB2DIR) all
+re: fclean all ## Rebuild project
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+help: ## Show help info
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "$(CYAN)%-30s$(RESET) %s\n", $$1, $$2}'
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+.PHONY: all re clean fclean help
 
-$(TARGET): $(OBJ_FILES) $(MYLIBS)
-	$(CC) $(OBJ_FILES) -o $(TARGET) $(SYSLIBFLAGS) $(MYLIBS)
+#### COLORS ####
+# Color codes
+RESET		:= \033[0m
+BOLD		:= \033[1m
+UNDERLINE	:= \033[4m
 
-clean:
-	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIB_DIR)$(LIB1DIR) clean
-	$(MAKE) -C $(LIB_DIR)$(LIB2DIR) clean
+# Regular colors
+BLACK		:= \033[30m
+RED			:= \033[31m
+GREEN		:= \033[32m
+YELLOW		:= \033[33m
+BLUE		:= \033[34m
+MAGENTA		:= \033[35m
+CYAN		:= \033[36m
+WHITE		:= \033[37m
 
-fclean: clean
-	rm -f $(TARGET) $(BONUS_TARGET)
-	$(MAKE) -C $(LIB_DIR)$(LIB1DIR) fclean
-	$(MAKE) -C $(LIB_DIR)$(LIB2DIR) fclean
+# Background colors
+BG_BLACK	:= \033[40m
+BG_RED		:= \033[41m
+BG_GREEN	:= \033[42m
+BG_YELLOW	:= \033[43m
+BG_BLUE		:= \033[44m
+BG_MAGENTA	:= \033[45m
+BG_CYAN		:= \033[46m
+BG_WHITE	:= \033[47m
 
-re: fclean all
-
-.PHONY: clean fclean all re
+# Credits:
+# This Makefile was copied from https://github.com/tesla33io/philosophers.git
+# Gratitude to the maker
+# It was edited to fit the needs of our project (Gabe and Karl)

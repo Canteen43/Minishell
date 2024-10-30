@@ -1,6 +1,0 @@
-[submodule "lib/flib"]
-	path = lib/flib
-	url = https://github.com/Canteen43/FLib.git
-[submodule "lib/libft"]
-	path = lib/libft
-	url = https://github.com/Canteen43/Libft.git
