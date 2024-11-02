@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/10/30 15:54:48 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/02 19:40:27 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv[], char *env[])
 {
 	char	*command_line;
 
+	f_handle_signals();
 	printf("Argc: %d, Argv[0]: %s\n", argc, argv[0]);
 	command_line = readline("Enter command: ");
 	while (command_line)
