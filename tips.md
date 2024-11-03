@@ -33,4 +33,9 @@ This document lists the allowed functions grouped by their respective headers. E
 - **`char *getcwd(char buf[.size], size_t size);`**  
   Returns the absolute pathname as a string `stdout`.
   On my home-ubuntu `getcwd(NULL, 0)` worked and returned a string that contains the absolute path. After changing the directory with chdir(), getcwd() returned another path. The string has to be freed.
+- **`int chdir(const char *path);`**  
+  Path is the directory we want to go to. Returns 0 on success and -1 on failure.
 
+## `<stdlib.h>`
+- **`void exit(int status);`**  
+  Process is terminated and int is returned to parent.

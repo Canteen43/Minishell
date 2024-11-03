@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/02 19:40:55 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:26:05 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,23 @@
 # include <errno.h>         // For perror(), strerror()
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
 
+// Env struct
+typedef struct s_environment
+{
+	char					*key;
+	char					*value;
+	struct s_environment	*next;
+}	t_env;
+
 // Function declarations
 // core
 void	f_execute(char *line, char *env[]);
 void	f_handle_signals(void);
 // builtins
 void	f_echo(void);
-void	f_pwd(char *env[]);
+void	f_pwd(void);
+void	f_env(char *env[]);
+void	f_cd(char *path);
 // utils
 int		f_strcmp(char *str1, char *str2);
 
