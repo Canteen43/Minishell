@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_add_ev.c                                         :+:      :+:    :+:   */
+/*   f_env_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:27:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/03 20:50:22 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/03 20:50:27 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.c"
+#include "minishell.h"
 
-int	f_add_ev(t_env **p_head, char *key, char *value)
+int	f_env_new(char *key, char *value)
 {
-	if (*p_head == NULL)
-	{
-		
-	}
+	t_env	*new;
+
+	new = (t_env *)malloc(sizeof(t_env));
+	if (new == NULL)
+		return (1);
+	new->key = key;
+	new->value = value;
+	new->next = NULL;
+	return (0);
 }
