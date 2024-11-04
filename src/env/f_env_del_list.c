@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_new.c                                        :+:      :+:    :+:   */
+/*   f_env_del_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 07:40:33 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 08:37:07 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 08:38:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*f_env_new(char *key, char *value)
+/* Deletes a linked list of env variables. */
+void	f_env_del_list(t_env *head)
 {
-	t_env	*new;
+	t_env	*tmp;
 
-	new = (t_env *)malloc(sizeof(t_env));
-	if (new == NULL)
-		return (1);
-	new->key = key;
-	new->value = value;
-	new->next = NULL;
-	return (new);
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp->key);
+		free(tmp->value);
+		free(tmp);
+	}
 }

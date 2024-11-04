@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_new.c                                        :+:      :+:    :+:   */
+/*   f_memcpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 07:40:33 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 08:19:19 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 08:19:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*f_env_new(char *key, char *value)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	t_env	*new;
+	void	*start;
 
-	new = (t_env *)malloc(sizeof(t_env));
-	if (new == NULL)
-		return (1);
-	new->key = key;
-	new->value = value;
-	new->next = NULL;
-	return (new);
+	if (!dest || !src)
+		return (NULL);
+	start = dest;
+	while (n-- > 0)
+		*(unsigned char *)dest++ = *(unsigned char *)src++;
+	return (start);
 }

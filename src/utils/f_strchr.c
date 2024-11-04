@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_new.c                                        :+:      :+:    :+:   */
+/*   f_strchr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 07:40:33 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 08:08:58 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 08:10:02 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*f_env_new(char *key, char *value)
+/* Searches for first occurence of char c in string s and returns pointer to
+the location.*/
+char	*ft_strchr(const char *s, int c)
 {
-	t_env	*new;
-
-	new = (t_env *)malloc(sizeof(t_env));
-	if (new == NULL)
-		return (1);
-	new->key = key;
-	new->value = value;
-	new->next = NULL;
-	return (new);
+	while (*s)
+	{
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
