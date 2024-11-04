@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_create_2da.c                                 :+:      :+:    :+:   */
+/*   f_env_keyvaluetostr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 08:43:38 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:08:37 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 09:04:44 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 09:17:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Creates a 2d array of env variables. Returns the 2d array. */
-char	**f_env_create_2da(t_env *head)
+/* Converts a key and value to a string. Returns the string. */
+char	*f_env_keyvaluetostr(t_env *node)
 {
-	char	**env;
-	int		i;
+	char	*tmp;
+	char	*str;
 
-	env = (char **)malloc(sizeof(char *) * (f_env_lstsize(head) + 1));
-	if (env == NULL)
+	tmp = f_strjoin(node->key, "=");
+	if (tmp == NULL)
 		return (NULL);
-	i = 0;
-	while (head != NULL)
-	{
-		env[i] = f_env_keyvaluetostr(head);
-		if (env[i] == NULL)
-		{
-			f_env_del_2da(env);
-			return (NULL);
-		}
-		head = head->next;
-		i++;
-	}
-	env[i] = NULL;
-	return (env);
+	str = f_strjoin(tmp, node->value);
+	free(tmp);
+	if (str == NULL)
+		return (NULL);
+	return (str);
 }

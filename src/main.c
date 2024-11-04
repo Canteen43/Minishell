@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/02 19:40:27 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:22:34 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	main(int argc, char *argv[], char *env[])
 {
+	t_main	main;
 	char	*command_line;
 
+	main.env_head = f_env_create_2da(env);
 	f_handle_signals();
 	printf("Argc: %d, Argv[0]: %s\n", argc, argv[0]);
 	command_line = readline("Enter command: ");

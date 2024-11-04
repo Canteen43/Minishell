@@ -28,8 +28,24 @@ SRC_FILES		+= builtins/f_pwd.c
 SRC_FILES		+= builtins/f_env.c
 SRC_FILES		+= builtins/f_cd.c
 
+SRC_FILES		+= env/f_env_add_back.c
+SRC_FILES		+= env/f_env_create_2da.c
+SRC_FILES		+= env/f_env_create_lnklst.c
+SRC_FILES		+= env/f_env_del_2da.c
+SRC_FILES		+= env/f_env_del_list.c
+SRC_FILES		+= env/f_env_del_one.c
+SRC_FILES		+= env/f_env_find_key.c
+SRC_FILES		+= env/f_env_keyvaluetostr.c
+SRC_FILES		+= env/f_env_last.c
+SRC_FILES		+= env/f_env_new.c
+SRC_FILES		+= env/f_env_strtokey.c
+SRC_FILES		+= env/f_env_strtovalue.c
+
 SRC_FILES		+= utils/f_strcmp.c
 SRC_FILES		+= utils/f_strncmp.c
+SRC_FILES		+= utils/f_strchr.c
+SRC_FILES		+= utils/f_strlen.c
+SRC_FILES		+= utils/f_strjoin.c
 
 
 # Object files directory
