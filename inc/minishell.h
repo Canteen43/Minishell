@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:26:11 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:53:34 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	f_handle_signals(void);
 void	f_echo(void);
 void	f_pwd(void);
 void	f_env(t_main *main);
-void	f_cd(char *path, t_main *main);
+void	f_cd(t_main *main, char *str);
+void	f_unset(t_main *main, char *str);
+void	f_export(t_main *main, char *str);
 // env
 char	*f_env_strtovalue(char *str);
 int		f_env_add_back(t_env **p_head, char *key, char *value);

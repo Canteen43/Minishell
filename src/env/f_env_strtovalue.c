@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_env_strtovalue.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 08:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:28:03 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:04:47 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ char	*f_env_strtovalue(char *str)
 	if (eq_pos == NULL)
 		return (NULL);
 	len = f_strlen(eq_pos + 1);
-	if (len == 0)
-		return (NULL);
 	value = (char *)malloc(sizeof(char) * (len + 1));
 	if (value == NULL)
 		return (NULL);

@@ -27,6 +27,8 @@ SRC_FILES		+= builtins/f_echo.c
 SRC_FILES		+= builtins/f_pwd.c
 SRC_FILES		+= builtins/f_env.c
 SRC_FILES		+= builtins/f_cd.c
+SRC_FILES		+= builtins/f_unset.c
+SRC_FILES		+= builtins/f_export.c
 
 SRC_FILES		+= env/f_env_add_back.c
 SRC_FILES		+= env/f_env_create_2da.c
