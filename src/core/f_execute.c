@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   f_execute.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/03 12:14:13 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:27:05 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_execute(char *line, char *env[])
+void	f_execute(char *line, t_main *main)
 {
 	if (strncmp(line, "echo ", 5) == 0)
 		printf("%s\n", line + 5);
@@ -24,7 +24,7 @@ void	f_execute(char *line, char *env[])
 		exit(0);
 	}
 	if (strcmp(line, "env") == 0)
-		f_env(env);
+		f_env(main);
 	if (strncmp(line, "cd ", 3) == 0)
 		f_cd(line + 3);
 }

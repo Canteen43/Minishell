@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:22:34 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:27:04 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[], char *env[])
 	command_line = readline("Enter command: ");
 	while (command_line)
 	{
-		f_execute(command_line, env);
+		f_execute(command_line, &main);
 		free(command_line);
 		command_line = readline("Enter another command: ");
 	}
