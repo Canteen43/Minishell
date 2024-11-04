@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_find_key.c                                   :+:      :+:    :+:   */
+/*   f_env_lstlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 08:38:43 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:11:04 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 09:52:52 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 09:53:16 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Finds a key in a linked list of env variables. Returns the node. */
-t_env	*f_env_find_key(t_env *head, char *key)
+/* Returns the number of elements of the env linked list. */
+int	f_env_lstlen(t_env *head)
 {
+	int		len;
+
+	len = 0;
 	while (head != NULL)
 	{
-		if (f_strcmp(head->key, key) == 0)
-			return (head);
 		head = head->next;
+		len++;
 	}
-	return (NULL);
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:27:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:32:49 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:51:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	f_env_add_back(t_env **p_head, char *key, char *value)
 {
-	t env	*new;
+	t_env	*new;
 
 	new = f_env_new(key, value);
 	if (new == NULL)

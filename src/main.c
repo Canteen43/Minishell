@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:27:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:49:06 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[], char *env[])
 	t_main	main;
 	char	*command_line;
 
-	main.env_head = f_env_create_2da(env);
+	main.env_head = f_env_create_lnklst(env);
 	f_handle_signals();
 	printf("Argc: %d, Argv[0]: %s\n", argc, argv[0]);
 	command_line = readline("Enter command: ");

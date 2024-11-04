@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 08:08:58 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:10:02 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:39:37 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Searches for first occurence of char c in string s and returns pointer to
 the location.*/
-char	*ft_strchr(const char *s, int c)
+char	*f_strchr(const char *s, int c)
 {
 	while (*s)
 	{

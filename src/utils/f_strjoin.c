@@ -6,20 +6,20 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 09:09:31 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:09:46 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:39:26 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /* Joins two strings. Returns the new string. */
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*f_strjoin(char const *s1, char const *s2)
 {
 	size_t	size_needed;
 	char	*s3;
 
-	size_needed = ft_strlen(s1) + ft_strlen(s2) + 1;
-	s3 = ft_calloc(size_needed, sizeof(char));
+	size_needed = f_strlen(s1) + f_strlen(s2) + 1;
+	s3 = malloc(size_needed * sizeof(char));
 	if (!s3)
 		return (NULL);
 	while (*s1)

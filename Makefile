@@ -37,15 +37,17 @@ SRC_FILES		+= env/f_env_del_one.c
 SRC_FILES		+= env/f_env_find_key.c
 SRC_FILES		+= env/f_env_keyvaluetostr.c
 SRC_FILES		+= env/f_env_last.c
+SRC_FILES		+= env/f_env_lstlen.c
 SRC_FILES		+= env/f_env_new.c
 SRC_FILES		+= env/f_env_strtokey.c
 SRC_FILES		+= env/f_env_strtovalue.c
 
-SRC_FILES		+= utils/f_strcmp.c
-SRC_FILES		+= utils/f_strncmp.c
+SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
-SRC_FILES		+= utils/f_strlen.c
+SRC_FILES		+= utils/f_strcmp.c
 SRC_FILES		+= utils/f_strjoin.c
+SRC_FILES		+= utils/f_strlen.c
+SRC_FILES		+= utils/f_strncmp.c
 
 
 # Object files directory

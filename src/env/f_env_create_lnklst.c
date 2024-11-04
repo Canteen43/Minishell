@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 07:49:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:43:13 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:10:46 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ t_env	*f_env_create_lnklst(char **env)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		key = f_env_key(env[i]);
-		value = f_env_value(env[i]);
+		key = f_env_strtokey(env[i]);
+		value = f_env_strtovalue(env[i]);
 		if (key == NULL || value == NULL)
 		{
 			f_env_del_list(head);
 			return (NULL);
 		}
-		if (f_env_add_back(&head, key, head) == -1)
+		if (f_env_add_back(&head, key, value) == -1)
 		{
 			f_env_del_list(head);
 			return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 08:43:38 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:08:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:52:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**f_env_create_2da(t_env *head)
 	char	**env;
 	int		i;
 
-	env = (char **)malloc(sizeof(char *) * (f_env_lstsize(head) + 1));
+	env = (char **)malloc(sizeof(char *) * (f_env_lstlen(head) + 1));
 	if (env == NULL)
 		return (NULL);
 	i = 0;
