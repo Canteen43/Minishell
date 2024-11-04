@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:27:05 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:53:59 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	f_execute(char *line, t_main *main)
 	if (strcmp(line, "env") == 0)
 		f_env(main);
 	if (strncmp(line, "cd ", 3) == 0)
-		f_cd(line + 3);
+		f_cd(line + 3, main);
 }
