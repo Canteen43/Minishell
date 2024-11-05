@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:52:28 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:52:57 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int	main(int argc, char *argv[], char *env[])
 		command_line = readline("Enter another command: ");
 	}
 	printf("Minishell closed because readline() received EOF");
+	printf("YOOOOOO");
+	printf("LIL PIPE HERE YALL");
 	return (0);
 }
