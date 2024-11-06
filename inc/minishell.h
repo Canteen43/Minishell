@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 15:53:34 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:33:37 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,34 @@ typedef struct s_environment
 	struct s_environment	*next;
 }	t_env;
 
+// Command struct
+typedef struct s_command
+{
+	char					*command;
+	char					**args;
+}	t_cmd;
+
 // Main struct
 typedef struct s_main
 {
 	t_env	*env_head;
+	t_cmd	current_cmd;
 }	t_main;
 
 // Function declarations
 // core
-void	f_execute(char *line, t_main *main);
+void	f_execute(t_main *main);
 void	f_handle_signals(void);
+void	init(t_main *main, char *env[]);
+void	f_extract_cmd(t_main *main, char *command_line);
 // builtins
-void	f_echo(void);
+void	f_echo(t_main *main);
 void	f_pwd(void);
 void	f_env(t_main *main);
-void	f_cd(t_main *main, char *str);
-void	f_unset(t_main *main, char *str);
-void	f_export(t_main *main, char *str);
+void	f_cd(t_main *main);
+void	f_unset(t_main *main);
+void	f_export(t_main *main);
+int		is_builtin(char *command);
 // env
 char	*f_env_strtovalue(char *str);
 int		f_env_add_back(t_env **p_head, char *key, char *value);
@@ -82,5 +93,6 @@ int		f_strcmp(char *str1, char *str2);
 char	*f_strchr(const char *s, int c);
 size_t	f_strlen(const char *s);
 char	*f_strjoin(char const *s1, char const *s2);
+char	**f_split(char const *s, char c);
 
 #endif // MINISHELL_H

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:01:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/02 19:59:38 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:41:02 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	f_handle_signals(void)
 	return ;
 }
 
+	// handle SIGINT here
 static void	sf_handler(int signum)
 {
 	(void)signum;
-	// handle SIGINT here
 }

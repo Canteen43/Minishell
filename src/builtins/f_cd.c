@@ -6,15 +6,27 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 11:43:44 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 15:50:34 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:36:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_cd(t_main *main, char *path)
+void	f_cd(t_main *main)
 {
-	
+	char **args;
+	char* path;
+
+	args = main->current_cmd.args;
+	if (args[1] == NULL)
+		path = f_env_find_key(main->env_head, "HOME")->value;
+	else if (args[2] != NULL)
+	{
+		printf("Too many arguments.\n");
+		return ;
+	}
+	else
+		path = args[1];
 	if (chdir(path) == -1)
 		printf("Changing directory unsuccessful.\n");
 	f_env_find_key(main->env_head, "OLDPWD")->value

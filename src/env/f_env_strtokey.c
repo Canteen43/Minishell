@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_env_strtokey.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 07:58:25 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:30:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:54:19 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*f_env_strtokey(char *str)
 		return (NULL);
 	eq_pos = f_strchr(str, '=');
 	if (eq_pos == NULL)
-		return (NULL);
+		eq_pos = f_strchr(str, '\0');
 	len = eq_pos - str;
 	if (len == 0)
 		return (NULL);

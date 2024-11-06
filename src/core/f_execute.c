@@ -6,29 +6,31 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 15:51:08 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:34:54 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_execute(char *line, t_main *main)
+void	f_execute(t_main *main)
 {
-	if (strncmp(line, "echo ", 5) == 0)
-		printf("%s\n", line + 5);
-	if (strcmp(line, "pwd") == 0)
+	if (strcmp(main->current_cmd.command, "echo") == 0)
+		f_echo(main);
+	else if (strcmp(main->current_cmd.command, "pwd") == 0)
 		f_pwd();
-	if (strcmp(line, "exit") == 0)
+	else if (strcmp(main->current_cmd.command, "exit") == 0)
 	{
 		printf("Exiting Minishell");
 		exit(0);
 	}
-	if (strcmp(line, "env") == 0)
+	else if (strcmp(main->current_cmd.command, "env") == 0)
 		f_env(main);
-	if (strncmp(line, "cd ", 3) == 0)
-		f_cd(main, line + 3);
-	if (strncmp(line, "unset ", 6) == 0)
-		f_unset(main, line + 6);
-	if (strncmp(line, "export ", 7) == 0)
-		f_export(main, line + 7);
+	else if (strcmp(main->current_cmd.command, "cd") == 0)
+		f_cd(main);
+	else if (strcmp(main->current_cmd.command, "unset") == 0)
+		f_unset(main);
+	else if (strcmp(main->current_cmd.command, "export") == 0)
+		f_export(main);
+	else
+		printf("Command not found: %s\n", main->current_cmd.command);
 }
