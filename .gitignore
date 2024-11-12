@@ -1,2 +1,4 @@
 # The following files are ignored
 /obj
+minishell
+a.out
