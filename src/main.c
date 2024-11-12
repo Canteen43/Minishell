@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:35:15 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:09:56 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argc;
 	(void)argv;
 	init(&main, env);
-	command_line = readline("Enter command: ");
+	command_line = readline(PROMPT);
 	while (command_line)
 	{
 		f_extract_cmd(&main, command_line);
 		f_execute(&main);
 		free(command_line);
-		command_line = readline("Enter another command: ");
+		command_line = readline(PROMPT);
 	}
 	printf("Minishell closed because readline() received EOF\n");
 	return (0);

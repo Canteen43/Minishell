@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:33:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:09:14 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 //  rl_replace_line(), rl_redisplay()
 # include <errno.h>         // For perror(), strerror()
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
+
+// Macros
+# define PROMPT "minishell$ "
 
 // Env struct
 typedef struct s_environment
