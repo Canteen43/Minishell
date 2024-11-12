@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   f_strjoin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 09:09:31 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:39:26 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:19:19 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Joins two strings. Returns the new string. */
+/* Joins two strings. Returns the new string. Expects valid strings.*/
 char	*f_strjoin(char const *s1, char const *s2)
 {
 	size_t	size_needed;

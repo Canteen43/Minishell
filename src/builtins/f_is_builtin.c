@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_keyvaluetostr.c                              :+:      :+:    :+:   */
+/*   f_is_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 09:04:44 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:01:27 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/06 14:31:19 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/06 14:34:00 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Converts a key and value to a string. Returns the string. */
-char	*f_env_keyvaluetostr(t_env *node)
+int	is_builtin(char *command)
 {
-	char	*tmp;
-	char	*str;
-
-	tmp = f_strjoin(node->key, "=");
-	if (tmp == NULL)
-		return (NULL);
-	if (node->value)
-	{
-		str = f_strjoin(tmp, node->value);
-		free(tmp);
-	}
-	else
-		str = tmp;
-	if (str == NULL)
-		return (NULL);
-	return (str);
+	if (f_strcmp(command, "echo") == 0)
+		return (1);
+	if (f_strcmp(command, "cd") == 0)
+		return (1);
+	if (f_strcmp(command, "pwd") == 0)
+		return (1);
+	if (f_strcmp(command, "env") == 0)
+		return (1);
+	if (f_strcmp(command, "export") == 0)
+		return (1);
+	if (f_strcmp(command, "unset") == 0)
+		return (1);
+	return (0);
 }

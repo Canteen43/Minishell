@@ -6,25 +6,37 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:36:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 15:55:54 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:36:17 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_export(t_main *main, char *str)
+void	f_export(t_main *main)
 {
 	char	*key;
 	char	*value;
+	char	**args;
 
-	if (!f_strchr(str, '='))
+	args = main->current_cmd.args + 1;
+	if (!*args)
 	{
-		f_env_add_back(&main->env_head, f_strjoin("", str), "\0");
+		f_env(main);
 		return ;
 	}
-	key = f_env_strtokey(str);
-	value = f_env_strtovalue(str);
-	if (key == NULL || value == NULL)
-		return ;
-	f_env_add_back(&main->env_head, key, value);
+	while (*args)
+	{
+		key = f_env_strtokey(*args);
+		if (key == NULL)
+		{
+			printf("Invalid key.\n");
+			return ;
+		}
+		value = f_env_strtovalue(*args);
+		if (f_env_find_key(main->env_head, key))
+			f_env_find_key(main->env_head, key)->value = value;
+		else
+			f_env_add_back(&main->env_head, key, value);
+		args++;
+	}
 }
