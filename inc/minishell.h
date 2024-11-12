@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/12 16:09:14 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:07:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 
 // Macros
 # define PROMPT "minishell$ "
+# define DEFAULT 1
+# define SQUOTE 2
+# define DQUOTE 3
 
 // Env struct
 typedef struct s_environment
