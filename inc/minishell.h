@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 09:17:14 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:55:32 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,13 @@ char	*f_strchr(const char *s, int c);
 size_t	f_strlen(const char *s);
 char	*f_strjoin(char const *s1, char const *s2);
 char	**f_split(char const *s, char c);
+char	*f_strdup(const char *s);
+// token
+int		f_get_token_end(char *str, int start);
+void	f_tokenize(t_main *main);
+int		f_tok_add_back(t_tok **p_head, char *str);
+t_tok	*f_tok_last(t_tok *head);
+t_tok	*f_tok_new(char *str);
+void	f_print_tokens(t_main *main);
 
 #endif // MINISHELL_H

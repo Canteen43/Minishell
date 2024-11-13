@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_tok_lst.c                                     :+:      :+:    :+:   */
+/*   f_strdup.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 09:19:59 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 10:05:44 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/13 12:59:44 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/13 13:55:21 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_tok_lst(t_main *main)
+char	*f_strdup(const char *s)
 {
-	main->tok_head = NULL;
-	put whitespace token at first position;
+	char	*ptr;
+	char	*start;
+
+	ptr = malloc((f_strlen(s) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	start = ptr;
+	while (*s)
+		*ptr++ = *s++;
+	*ptr = '\0';
+	return (start);
 }

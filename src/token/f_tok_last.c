@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_last.c                                       :+:      :+:    :+:   */
+/*   f_tok_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 07:44:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:24:21 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:56:29 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*f_env_last(t_env *head)
+t_tok	*f_tok_last(t_tok *head)
 {
 	if (head == NULL)
 		return (NULL);

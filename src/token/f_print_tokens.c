@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   f_print_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 13:53:41 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/13 13:51:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *env[])
+/*Debug function to print the tokens*/
+void	f_print_tokens(t_main *main)
 {
-	t_main	main;
+	t_tok	*current;
 
-	(void)argc;
-	(void)argv;
-	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
+	current = main->tok_head;
+	while (current)
 	{
-		f_tokenize(&main);
-		f_print_tokens(&main);
-		f_extract_cmd(&main, main.user_input);
-		f_execute(&main);
-		free(main.user_input);
-		main.user_input = readline(PROMPT);
+		printf("Token: %s\n", current->str);
+		current = current->next;
 	}
-	printf("Minishell closed because readline() received EOF\n");
-	return (0);
 }
