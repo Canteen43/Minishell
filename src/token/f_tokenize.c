@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/12 18:24:24 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:15:45 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,20 @@
 
 /*Creates a linked list of tokens from the string provided.
 WIP: For now, it prints the tokens. Later it will create the linked list.*/
-void	f_tokenize(char *str)
+void	f_tokenize(t_main *main)
 {
-	char	*token;
-	size_t	start;
-	size_t	end;
-	int		status;
-
-	start = 0;
-	while (str[start] != '\0')
+	str = main->user_input;
+	while (str[i])
 	{
-		end = start;
-		status = DEFAULT;
-		if (status == DEFAULT)
+		while (str[i] == ' ')
 		{
-			while (!f_strchr("\'\" \t", str[end]))
-				end++;
+			if (last token is not white)
+				create token;
+			i++;
 		}
-		
-		else if (status == SQUOTE)
-		{
-			while (str[end] != '\'' && str[end] != '\0')
-				end++;
-		}
-		else if (status == DQUOTE)
-		{
-			while (str[end] != '\"' && str[end] != '\0')
-				end++;
-		}
-	}
+		if non-whitespace
+			get_end;
+		malloc token and substr;
+		i = end + 1;
 	}
 }

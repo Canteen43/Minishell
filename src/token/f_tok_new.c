@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   f_tok_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 09:14:52 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/13 09:07:53 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *env[])
+t_tok	*f_tok_new(char *str)
 {
-	t_main	main;
+	t_tok	*new;
 
-	(void)argc;
-	(void)argv;
-	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
-	{
-		f_extract_cmd(&main, main.user_input);
-		f_execute(&main);
-		free(main.user_input);
-		main.user_input = readline(PROMPT);
-	}
-	printf("Minishell closed because readline() received EOF\n");
-	return (0);
+	new = (t_tok *)malloc(sizeof(t_tok));
+	if (new == NULL)
+		return (NULL);
+	new->str = str;
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
 }

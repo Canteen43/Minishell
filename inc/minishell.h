@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/12 17:07:25 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:17:14 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,21 @@ typedef struct s_command
 	char					**args;
 }	t_cmd;
 
+// Token struct
+typedef struct s_token
+{
+	char					*str;
+	struct s_token			*prev;
+	struct s_token			*next;
+}	t_tok;
+
 // Main struct
 typedef struct s_main
 {
 	t_env	*env_head;
 	t_cmd	current_cmd;
+	char	*user_input;
+	t_tok	*tok_head;
 }	t_main;
 
 // Function declarations

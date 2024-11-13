@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   f_env_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 09:14:52 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 07:44:04 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/04 10:24:21 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *env[])
+t_env	*f_env_last(t_env *head)
 {
-	t_main	main;
-
-	(void)argc;
-	(void)argv;
-	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
-	{
-		f_extract_cmd(&main, main.user_input);
-		f_execute(&main);
-		free(main.user_input);
-		main.user_input = readline(PROMPT);
-	}
-	printf("Minishell closed because readline() received EOF\n");
-	return (0);
+	if (head == NULL)
+		return (NULL);
+	while (head->next != NULL)
+		head = head->next;
+	return (head);
 }

@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_tok_lst.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 09:14:52 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/13 09:19:59 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/13 10:05:44 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *env[])
+void	init_tok_lst(t_main *main)
 {
-	t_main	main;
-
-	(void)argc;
-	(void)argv;
-	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
-	{
-		f_extract_cmd(&main, main.user_input);
-		f_execute(&main);
-		free(main.user_input);
-		main.user_input = readline(PROMPT);
-	}
-	printf("Minishell closed because readline() received EOF\n");
-	return (0);
+	main->tok_head = NULL;
+	put whitespace token at first position;
 }
