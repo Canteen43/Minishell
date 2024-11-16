@@ -53,6 +53,8 @@ SRC_FILES		 += token/f_tok_add_back.c
 SRC_FILES		 += token/f_tok_last.c
 SRC_FILES		 += token/f_tok_new.c
 SRC_FILES		 += token/f_print_tokens.c
+SRC_FILES		 += token/f_create_tokens.c
+SRC_FILES		 += token/f_tok_check_syntax.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
@@ -62,6 +64,7 @@ SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
 SRC_FILES		+= utils/f_split.c
 SRC_FILES		+= utils/f_strdup.c
+SRC_FILES		+= utils/f_strscmp.c
 
 # Object files directory
 OBJ_DIR			:= obj/

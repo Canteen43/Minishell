@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:10:41 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/13 14:01:48 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/16 09:39:21 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	f_get_token_end(char *str, int start)
 	char	*ptr;
 	int		end;
 
+	if (str[start] == '>' || str[start] == '<' || str[start] == '|')
+		return (start);
 	if (str[start] == '\'' || str[start] == '\"')
 	{
 		ptr = f_strchr(str + start + 1, str[start]);
@@ -27,7 +29,7 @@ int	f_get_token_end(char *str, int start)
 		return (ptr - str);
 	}
 	end = start;
-	while (str[end] && str[end] != ' ' && str[end] != '\'' && str[end] != '\"')
+	while ((f_strchr(" \'\"<>|", str[end]) == NULL) && str[end] != '\0')
 		end++;
 	return (end - 1);
 }

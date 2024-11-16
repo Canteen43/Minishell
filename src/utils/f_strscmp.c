@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   f_strscmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/16 10:59:45 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/16 10:13:28 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/16 10:23:58 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	main(int argc, char *argv[], char *env[])
+/*Uses f_strcmp to compare n strings and returns the first string that 
+is equal.*/
+char	*f_strscmp(char *str1, int n, ...)
 {
-	t_main	main;
+	va_list	strs;
+	char	*str;
 
-	(void)argc;
-	(void)argv;
-	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
+	va_start(strs, n);
+	while (n)
 	{
-		f_tokenize(&main);
-		f_extract_cmd(&main, main.user_input);
-		f_execute(&main);
-		free(main.user_input);
-		main.user_input = readline(PROMPT);
+		str = va_arg(strs, char *);
+		if (f_strcmp(str, str1) == 0)
+		{
+			va_end(strs);
+			return (str);
+		}
+		n--;
 	}
-	printf("Minishell closed because readline() received EOF\n");
-	return (0);
+	va_end(strs);
+	return (NULL);
 }
