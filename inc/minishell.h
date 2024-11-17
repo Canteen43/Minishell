@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/16 11:08:36 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/17 11:45:35 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@
 
 // Macros
 # define PROMPT "minishell$ "
-# define DEFAULT 1
-# define SQUOTE 2
-# define DQUOTE 3
 
 // Env struct
 typedef struct s_environment
@@ -58,10 +55,22 @@ typedef struct s_command
 	char					**args;
 }	t_cmd;
 
+// Token Type enum
+typedef enum e_token_type
+{
+	NONE,
+	WHITE,
+	WORD,
+	SQUOTE,
+	DQUOTE,
+	OPERATOR
+}	t_type;
+
 // Token struct
 typedef struct s_token
 {
 	char					*str;
+	t_type					type;
 	struct s_token			*prev;
 	struct s_token			*next;
 }	t_tok;
@@ -121,5 +130,8 @@ t_tok	*f_tok_new(char *str);
 void	f_print_tokens(t_main *main);
 void	f_create_tokens(t_main *main);
 t_tok	*f_tok_check_syntax(t_main *main);
+void	f_tok_del_one(t_tok *tok);
+void	f_unite_double_ops(t_main *main);
+void	f_add_categories(t_main *main);
 
 #endif // MINISHELL_H

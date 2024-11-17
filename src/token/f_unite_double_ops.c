@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_unite_double_ops.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 15:49:40 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/17 11:06:39 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 11:26:58 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+/*Unites double operators into one token*/
+void	f_unite_double_ops(t_main *main)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
+	t_tok	*current;
+
+	current = main->tok_head;
+	while (current->next)
 	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
+		if (f_strscmp(current->str, 2, "<", ">") && strcmp(current->str,
+				current->next->str) == 0)
+		{
+			f_tok_del_one(current->next);
+			current->str = f_strjoin(current->str, current->str);
+		}
+		current = current->next;
 	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_remove_qu
-	// TODO: Remove this line
-	f_print_tokens(main);
 }

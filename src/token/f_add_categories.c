@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_print_tokens.c                                   :+:      :+:    :+:   */
+/*   f_add_categories.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 10:43:48 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/17 11:33:23 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 11:42:33 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*Debug function to print the tokens*/
-void	f_print_tokens(t_main *main)
+/*Adds categories to tokens*/
+void	f_add_categories(t_main *main)
 {
 	t_tok	*current;
-	int		i;
 
 	current = main->tok_head;
-	i = 0;
 	while (current)
 	{
-		printf("Token %d:\nType: %d\nString: %s\n\n", i, current->type,
-			current->str);
+		if (f_strscmp(current->str, 2, ">", ">>", "<", "<<", "|"))
+			current->type = OPERATOR;
+		else if (current->str[0] == '\'')
+			current->type = SQUOTE;
+		else if (current->str[0] == '\"')
+			current->type = DQUOTE;
+		else if (current->str[0] == ' ')
+			current->type = WHITE;
+		else
+			current->type = WORD;
 		current = current->next;
-		i++;
 	}
 }

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_tok_del_one.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 15:49:40 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/17 11:13:13 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 11:13:41 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+/*Deletes one token*/
+void	f_tok_del_one(t_tok *tok)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
-	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
-	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_remove_qu
-	// TODO: Remove this line
-	f_print_tokens(main);
+	if (tok->prev)
+		tok->prev->next = tok->next;
+	if (tok->next)
+		tok->next->prev = tok->prev;
+	free(tok->str);
+	free(tok);
 }

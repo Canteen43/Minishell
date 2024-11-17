@@ -55,6 +55,9 @@ SRC_FILES		 += token/f_tok_new.c
 SRC_FILES		 += token/f_print_tokens.c
 SRC_FILES		 += token/f_create_tokens.c
 SRC_FILES		 += token/f_tok_check_syntax.c
+SRC_FILES		 += token/f_tok_del_one.c
+SRC_FILES		 += token/f_unite_double_ops.c
+SRC_FILES		 += token/f_add_categories.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
