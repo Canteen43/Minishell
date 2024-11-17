@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 13:38:59 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/17 17:14:22 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,6 @@
 # include <errno.h> // For perror(), strerror()
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
 
-// Global vars
-# ifndef MAX_FD
-#  define MAX_FD 1024
-# endif
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
 // Macros
 # define PROMPT "minishell$ "
 
@@ -64,11 +55,24 @@ typedef struct s_command
 	char					**args;
 }							t_cmd;
 
+// Garbage Collector
+typedef struct s_gnode
+{
+	void					*ptr;
+	struct s_gnode			*next;
+}							t_gnode;
+
+typedef struct s_gc
+{
+	t_gnode					*head;
+}							t_gc;
+
 // Main struct
 typedef struct s_main
 {
 	t_env					*env_head;
 	t_cmd					current_cmd;
+	t_gc					*gc;
 }							t_main;
 
 // Pipex struct
@@ -94,6 +98,7 @@ void						f_cd(t_main *main);
 void						f_unset(t_main *main);
 void						f_export(t_main *main);
 int							is_builtin(char *command);
+
 // env
 char						*f_env_strtovalue(char *str);
 int							f_env_add_back(t_env **p_head, char *key,
@@ -109,6 +114,7 @@ void						f_env_del_list(t_env *head);
 void						f_env_del_2da(char **env);
 t_env						*f_env_last(t_env *head);
 int							f_env_lstlen(t_env *head);
+
 // utils
 void						*f_memcpy(void *dest, const void *src, size_t n);
 int							f_strcmp(char *str1, char *str2);
@@ -133,5 +139,9 @@ char						*ft_strdup(const char *string);
 char						*ft_substr(char const *s, unsigned int start,
 								size_t len);
 char						*ft_strjoin(char const *s1, char const *s2);
+
+// garbage collection
+void						*gc_malloc(size_t size, t_gc *gc);
+void						clean_garbage(t_gc *gc);
 
 #endif // MINISHELL_H
