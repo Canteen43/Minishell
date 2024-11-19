@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 08:27:54 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:11:50 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 15:49:40 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
 
-int	main(void)
+/*Creates a linked list of tokens from the string provided.*/
+void	f_tokenize(t_main *main)
 {
-	char	*str;
-	char	**arr;
-	int		i;
-
-	str = "echo hi hi hi hi hi h    ";
-	arr = f_split(str, ' ');
-	printf("String: %s\n", str);
-	printf("Command: %s\n", arr[0]);
-	i = 0;
-	while (arr[i])
+	f_create_tokens(main);
+	if (f_tok_check_syntax(main))
 	{
-		printf("arr[%d]: %s\n", i, arr[i]);
-		i++;
+		printf("Syntax error near unexpected token '%s'\n",
+			f_tok_check_syntax(main)->str);
 	}
+	f_unite_double_ops(main);
+	f_add_categories(main);
+	f_remove_qu
+	// TODO: Remove this line
+	f_print_tokens(main);
 }

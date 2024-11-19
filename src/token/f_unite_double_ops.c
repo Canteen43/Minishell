@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   f_unite_double_ops.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 08:27:54 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:11:50 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/17 11:06:39 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 11:26:58 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
 
-int	main(void)
+/*Unites double operators into one token*/
+void	f_unite_double_ops(t_main *main)
 {
-	char	*str;
-	char	**arr;
-	int		i;
+	t_tok	*current;
 
-	str = "echo hi hi hi hi hi h    ";
-	arr = f_split(str, ' ');
-	printf("String: %s\n", str);
-	printf("Command: %s\n", arr[0]);
-	i = 0;
-	while (arr[i])
+	current = main->tok_head;
+	while (current->next)
 	{
-		printf("arr[%d]: %s\n", i, arr[i]);
-		i++;
+		if (f_strscmp(current->str, 2, "<", ">") && strcmp(current->str,
+				current->next->str) == 0)
+		{
+			f_tok_del_one(current->next);
+			current->str = f_strjoin(current->str, current->str);
+		}
+		current = current->next;
 	}
 }

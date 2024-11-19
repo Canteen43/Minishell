@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   f_strscmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 08:27:54 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:11:50 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/16 10:13:28 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/16 10:23:58 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
-
-int	main(void)
+/*Uses f_strcmp to compare n strings and returns the first string that 
+is equal.*/
+char	*f_strscmp(char *str1, int n, ...)
 {
+	va_list	strs;
 	char	*str;
-	char	**arr;
-	int		i;
 
-	str = "echo hi hi hi hi hi h    ";
-	arr = f_split(str, ' ');
-	printf("String: %s\n", str);
-	printf("Command: %s\n", arr[0]);
-	i = 0;
-	while (arr[i])
+	va_start(strs, n);
+	while (n)
 	{
-		printf("arr[%d]: %s\n", i, arr[i]);
-		i++;
+		str = va_arg(strs, char *);
+		if (f_strcmp(str, str1) == 0)
+		{
+			va_end(strs);
+			return (str);
+		}
+		n--;
 	}
+	va_end(strs);
+	return (NULL);
 }
