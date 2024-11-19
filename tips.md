@@ -17,7 +17,7 @@
 - Also, the terminal seems to only send signals to the current foreground process. When our shell runs another program, that program becomes the fore ground process.
 - That means that we won't have to handle what signals do will other processes are running. We only have to handle signals when are Minishell is "idle". By that I mean, that it is displaying a prompt and not running a command.
 - So our Minishell has to:
-  - ignore SIGQUIT
+  - ignore SIGQUIT   
     - easy
   - close when receiving EOF
     - doable
