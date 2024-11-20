@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_expand_variables.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 15:55:26 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/20 15:37:06 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/20 17:04:36 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+void	f_expand_variable(t_main *main)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
+	t_tok	*tok;
+	char	*start;
+
+	tok = main->tok_head;
+	while (tok)
 	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
+		while (1)
+		{
+			start = f_strchr(tok->str, '$') + 1;
+			
+		}
+		tok = tok->next;
 	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_expand_variables(main);
-	f_print_tokens(main);
 }

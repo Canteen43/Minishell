@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_var_end.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 15:55:26 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/20 16:30:21 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/20 16:49:34 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+/*Expects a pointer to the first char after the '$' sign. Returns a pointer to
+the last char that is part of the variable*/
+char	*f_var_end(char *str)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
-	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
-	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_expand_variables(main);
-	f_print_tokens(main);
+	char	*end;
+
+	if (!f_is_alpha(*str) && *str != '_')
+		return (str);
+	while (f_is_alpha(*str) || *str == '_' || f_is_dig(*str))
+		str++;
+	return (str - 1);
 }
