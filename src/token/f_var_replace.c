@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_expand_variables.c                               :+:      :+:    :+:   */
+/*   f_var_replace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 15:37:06 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 19:18:59 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/20 18:50:38 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/20 18:57:50 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_expand_variable(t_main *main)
+/*Takes start and end of var to replace, as well as current token.*/
+void	f_var_replace(t_main *main, char *start, char *end)
 {
-	t_tok	*tok;
-	char	*start;
-	char	*end;
-	char	*var_string;
+	int	len;
 
-	tok = main->tok_head;
-	while (tok)
-	{
-		while (f_strchr(tok->str, '$'))
-		{
-			start = f_strchr(tok->str, '$') + 1;
-			end = f_var_end(start);
-			var_string = malloc(end - start + 2);
-			if (!var_string)
-				ERROR;
-			f_strncpy(var_string, start, end - start + 1);
-			var_string[end-start + 1] = '\0';
-			
-		}
-		tok = tok->next;
-	}
-}
+	len = end - start + 1;
+	
