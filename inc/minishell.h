@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/21 13:58:00 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/21 16:30:01 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ typedef enum e_token_type
 	WORD,
 	SQUOTE,
 	DQUOTE,
-	OPERATOR
+	OPERATOR,
+	CMD,
 }							t_type;
 
 // Token struct
@@ -83,6 +84,7 @@ typedef struct s_token
 {
 	char					*str;
 	t_type					type;
+	char					**args;
 	struct s_token			*prev;
 	struct s_token			*next;
 }							t_tok;
@@ -108,7 +110,7 @@ typedef struct s_pipex
 
 // Function declarations
 // core
-void						f_execute(t_main *main);
+void						f_execute_builtin(t_main *main);
 void						f_handle_signals(void);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
@@ -147,6 +149,7 @@ char						**f_split(char const *s, char c);
 char						*f_strdup(const char *s);
 char						*f_strscmp(char *str1, int n, ...);
 int							f_strncmp(char *str1, char *str2, size_t n);
+void						f_free_split(char **split);
 
 // token
 int							f_get_token_end(char *str, int start);
@@ -162,12 +165,14 @@ void						f_unite_double_ops(t_main *main);
 void						f_add_categories(t_main *main);
 
 // execution
-void						exit_clean(t_pipex *pipex, int ecode);
-char						*get_cmd_path(char **paths, char *in_cmd);
-int							open_file(t_pipex *pipex, char *filename, int i);
-void						free_split(char **split);
-void						here_doc(t_pipex *pipex, char *limiter, int argc);
-void						execute(t_pipex *pipex, char *argv, char **envp);
+void						f_exit_clean(t_pipex *pipex, int ecode);
+char						*f_get_cmd_path(char **paths, char *in_cmd);
+int							f_open_file(t_pipex *pipex, char *filename, int i);
+void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
+void						f_do_execute(t_pipex *pipex, char *argv,
+								char **envp);
+void						f_do_pipe(t_pipex *pipex, char **envp, char *argv);
+int							f_execution(int argc, char **argv, char **envp);
 
 // get next line
 char						*get_next_line(int fd);
@@ -179,5 +184,6 @@ char						*ft_strjoin(char const *s1, char const *s2);
 
 // garbage collection
 void						*gc_malloc(size_t size, t_gc *gc);
-void						clean_garbage(t_gc *gc);
+void						gc_clean(t_gc *gc);
+
 #endif // MINISHELL_H

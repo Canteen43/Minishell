@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   f_execute.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:34:54 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:33:52 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_execute(t_main *main)
+void	f_execute_builtin(t_main *main)
 {
 	if (strcmp(main->current_cmd.command, "echo") == 0)
 		f_echo(main);

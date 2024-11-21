@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   f_heredoc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:00:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/17 13:21:10 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:24:46 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	read_here_doc(t_pipex *pipex, int *fd, char *limiter)
+void	f_read_here_doc(t_pipex *pipex, int *fd, char *limiter)
 {
 	char	*line;
 
@@ -26,34 +26,34 @@ void	read_here_doc(t_pipex *pipex, int *fd, char *limiter)
 			if (f_strncmp(line, "\n", 1) == 0)
 			{
 				free(line);
-				exit_clean(pipex, 0);
+				f_exit_clean(pipex, 0);
 			}
 		}
 		else if (f_strncmp(line, limiter, f_strlen(limiter)) == 0)
 		{
 			free(line);
-			exit_clean(pipex, 0);
+			f_exit_clean(pipex, 0);
 		}
 		write(fd[1], line, f_strlen(line));
 		free(line);
 	}
 }
 
-void	here_doc(t_pipex *pipex, char *limiter, int argc)
+void	f_here_doc(t_pipex *pipex, char *limiter, int argc)
 {
 	pid_t	pid;
 	int		fd[2];
 
 	if (argc < 6)
-		exit_clean(pipex, 1);
+		f_exit_clean(pipex, 1);
 	if (pipe(fd) == 1)
 	{
 		perror("fork failed");
-		exit_clean(pipex, 1);
+		f_exit_clean(pipex, 1);
 	}
 	pid = fork();
 	if (pid == 0)
-		read_here_doc(pipex, fd, limiter);
+		f_read_here_doc(pipex, fd, limiter);
 	else
 	{
 		close(fd[1]);
