@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:37:06 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 22:35:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/21 08:22:50 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	f_expand_variable(t_main *main)
 	tok = main->tok_head;
 	while (tok)
 	{
+		while (tok->type == SQUOTE)
+			tok = tok->next;
 		while (f_strchr(tok->str, '$'))
 		{
 			start = f_strchr(tok->str, '$') + 1;
 			end = f_var_end(start);
 			value = f_var_find_key(main, start, end);
-
-			
+			tok->str = f_var_new_string(main, tok->str, value, end);
 		}
 		tok = tok->next;
 	}
