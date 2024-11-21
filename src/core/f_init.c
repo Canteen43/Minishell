@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:10:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:31:46 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:21:21 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	init(t_main *main, char *env[])
 {
 	main->env_head = NULL;
 	main->env_head = f_env_create_lnklst(env);
+	main->gc = NULL;
 	f_handle_signals();
 }
