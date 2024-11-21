@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   f_print_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 08:27:54 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:11:50 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/17 10:43:48 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
 
-int	main(void)
+/*Debug function to print the tokens*/
+void	f_print_tokens(t_main *main)
 {
-	char	*str;
-	char	**arr;
+	t_tok	*current;
 	int		i;
 
-	str = "echo hi hi hi hi hi h    ";
-	arr = f_split(str, ' ');
-	printf("String: %s\n", str);
-	printf("Command: %s\n", arr[0]);
+	current = main->tok_head;
 	i = 0;
-	while (arr[i])
+	while (current)
 	{
-		printf("arr[%d]: %s\n", i, arr[i]);
+		printf("Token %d:\nType: %d\nString: %s\n\n", i, current->type,
+			current->str);
+		current = current->next;
 		i++;
 	}
 }

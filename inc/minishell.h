@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 17:14:22 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/21 13:58:00 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,33 @@ typedef struct s_gc
 	t_gnode					*head;
 }							t_gc;
 
+// Token Type enum
+typedef enum e_token_type
+{
+	NONE,
+	WHITE,
+	WORD,
+	SQUOTE,
+	DQUOTE,
+	OPERATOR
+}							t_type;
+
+// Token struct
+typedef struct s_token
+{
+	char					*str;
+	t_type					type;
+	struct s_token			*prev;
+	struct s_token			*next;
+}							t_tok;
+
 // Main struct
 typedef struct s_main
 {
 	t_env					*env_head;
 	t_cmd					current_cmd;
+	char					*user_input;
+	t_tok					*tok_head;
 	t_gc					*gc;
 }							t_main;
 
@@ -122,7 +144,22 @@ char						*f_strchr(const char *s, int c);
 size_t						f_strlen(const char *s);
 char						*f_strjoin(char const *s1, char const *s2);
 char						**f_split(char const *s, char c);
+char						*f_strdup(const char *s);
+char						*f_strscmp(char *str1, int n, ...);
 int							f_strncmp(char *str1, char *str2, size_t n);
+
+// token
+int							f_get_token_end(char *str, int start);
+void						f_tokenize(t_main *main);
+int							f_tok_add_back(t_tok **p_head, char *str);
+t_tok						*f_tok_last(t_tok *head);
+t_tok						*f_tok_new(char *str);
+void						f_print_tokens(t_main *main);
+void						f_create_tokens(t_main *main);
+t_tok						*f_tok_check_syntax(t_main *main);
+void						f_tok_del_one(t_tok *tok);
+void						f_unite_double_ops(t_main *main);
+void						f_add_categories(t_main *main);
 
 // execution
 void						exit_clean(t_pipex *pipex, int ecode);
@@ -143,5 +180,4 @@ char						*ft_strjoin(char const *s1, char const *s2);
 // garbage collection
 void						*gc_malloc(size_t size, t_gc *gc);
 void						clean_garbage(t_gc *gc);
-
 #endif // MINISHELL_H
