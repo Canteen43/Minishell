@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:16:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/17 16:29:06 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:00:44 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,4 @@ void	*gc_malloc(size_t size, t_gc *gc)
 		return (NULL);
 	add_node(ptr, gc);
 	return (ptr);
-}
-
-// Function to clean all allocated memory in the garbage collector
-void	clean_garbage(t_gc *gc)
-{
-	t_gnode *tmp;
-	t_gnode *current;
-
-	current = gc->head;
-
-	while (current)
-	{
-		free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
-	}
-	gc->head = NULL;
 }
