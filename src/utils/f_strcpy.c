@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_expand_variables.c                               :+:      :+:    :+:   */
+/*   f_strcpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 15:37:06 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 12:10:53 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 12:22:15 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/23 12:23:32 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_expand_variables(t_main *main)
+/* Copies from src to dest.*/
+void	f_strcpy(char *dest, char *src)
 {
-	t_tok	*tok;
-	char	*start;
-	char	*end;
-	char	*value;
-
-	tok = main->tok_head;
-	while (tok)
-	{
-		while (tok->type == SQUOTE)
-			tok = tok->next;
-		while (f_strchr(tok->str, '$'))
-		{
-			start = f_strchr(tok->str, '$') + 1;
-			end = f_var_end(start);
-			value = f_var_find_key(main, start, end);
-			tok->str = f_var_new_string(main, tok->str, value, end);
-		}
-		tok = tok->next;
-	}
+	while (*src)
+		*dest++ = *src++;
 }

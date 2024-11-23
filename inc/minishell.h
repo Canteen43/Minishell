@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 15:54:45 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:31:17 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,10 @@ char	*f_strjoin(char const *s1, char const *s2);
 char	**f_split(char const *s, char c);
 char	*f_strdup(const char *s);
 char	*f_strscmp(char *str1, int n, ...);
+void	f_strncpy(char *dest, char *src, size_t n);
+void	f_strcpy(char *dest, char *src);
+bool	f_is_alpha(char c);
+bool	f_is_dig(char c);
 // token
 int		f_get_token_end(char *str, int start);
 void	f_tokenize(t_main *main);
@@ -134,5 +138,9 @@ t_tok	*f_tok_check_syntax(t_main *main);
 void	f_tok_del_one(t_tok *tok);
 void	f_unite_double_ops(t_main *main);
 void	f_add_categories(t_main *main);
+void	f_expand_variables(t_main *main);
+char	*f_var_end(char *str);
+char	*f_var_find_key(t_main *main, char *start, char *end);
+char	*f_var_new_string(t_main *main, char *oldstr, char *valstr, char *end);
 
 #endif // MINISHELL_H

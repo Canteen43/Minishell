@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_var_find_key.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:25:48 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/20 22:34:29 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:09:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 /*Takes start and end of a environment variable name as ptr to char. Returns
 value of corresponding str as pointer.*/
-char	*f_var_find_key(t_main main, char *start, char *end)
+char	*f_var_find_key(t_main *main, char *start, char *end)
 {
 	char	*var_string;
-	t_env	node;
+	t_env	*node;
 
+	if (*start == '?')
+		return ("0");
 	var_string = malloc(end - start + 2);
 	if (!var_string)
 		exit(1); //TODO: Generally, what do we do on malloc error?
