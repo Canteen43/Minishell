@@ -62,6 +62,9 @@ SRC_FILES		 += token/f_expand_variables.c
 SRC_FILES		 += token/f_var_find_key.c
 SRC_FILES		 += token/f_var_new_string.c
 SRC_FILES		 += token/f_var_end.c
+SRC_FILES		 += token/f_resolve_quotes.c
+SRC_FILES		 += token/f_join_tokens.c
+SRC_FILES		 += token/f_delete_white_toks.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c

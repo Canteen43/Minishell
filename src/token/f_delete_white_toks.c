@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_delete_white_toks.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 17:53:37 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 17:12:55 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/23 17:35:40 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+/*Deletes all WHITE tokens from the token linked list. They were needed to
+hold information on which tokens to join.*/
+void	f_delete_white_toks(t_main *main)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
+	t_tok	*tok;
+
+	main->tok_head = main->tok_head->next;
+	tok = main->tok_head;
+	while (tok)
 	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
+		if (tok->prev->type == WHITE)
+			f_tok_del_one(tok->prev);
+		tok = tok->next;
 	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_print_tokens(main);
-	f_expand_variables(main);
-	f_resolve_quotes(main);
-	f_join_tokens(main);
-	f_delete_white_toks(main);
-	f_print_tokens(main);
 }

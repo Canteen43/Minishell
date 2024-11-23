@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tokenize.c                                       :+:      :+:    :+:   */
+/*   f_join_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 17:53:37 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 16:58:08 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/23 17:08:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Creates a linked list of tokens from the string provided.*/
-void	f_tokenize(t_main *main)
+/*Joins adjacent WORD tokens into one token. Used after variable expansion and
+quote resolution to join strings that were not separate by whitespace but were
+in quotes.*/
+void	f_join_tokens(t_main *main)
 {
-	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
+	t_tok	*tok;
+
+	tok = main->tok_head;
+	while (tok)
 	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
+		if (tok->next && tok->type == WORD && tok->next->type == WORD)
+		{
+			tok->str = f_strjoin(tok->str, tok->next->str);
+			f_tok_del_one(tok->next);
+		}
+		tok = tok->next;
 	}
-	f_unite_double_ops(main);
-	f_add_categories(main);
-	f_print_tokens(main);
-	f_expand_variables(main);
-	f_resolve_quotes(main);
-	f_join_tokens(main);
-	f_delete_white_toks(main);
-	f_print_tokens(main);
 }
