@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:12:55 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 17:35:40 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:00:33 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	f_delete_white_toks(t_main *main)
 {
 	t_tok	*tok;
 
-	main->tok_head = main->tok_head->next;
+	while (main->tok_head->type == WHITE)
+		main->tok_head = main->tok_head->next;
+	main->tok_head->prev = NULL;
 	tok = main->tok_head;
 	while (tok)
 	{
-		if (tok->prev->type == WHITE)
-			f_tok_del_one(tok->prev);
+		if (tok->type == WHITE)
+			f_tok_remove_one(tok);
 		tok = tok->next;
 	}
 }

@@ -24,6 +24,8 @@ SRC_FILES		+= core/f_execute.c
 SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_init.c
 SRC_FILES		+= core/f_extract_cmd.c
+SRC_FILES		+= core/f_gc_malloc.c
+SRC_FILES		+= core/f_gc_clean.c
 
 SRC_FILES		+= builtins/f_echo.c
 SRC_FILES		+= builtins/f_pwd.c
@@ -55,7 +57,7 @@ SRC_FILES		 += token/f_tok_new.c
 SRC_FILES		 += token/f_print_tokens.c
 SRC_FILES		 += token/f_create_tokens.c
 SRC_FILES		 += token/f_tok_check_syntax.c
-SRC_FILES		 += token/f_tok_del_one.c
+SRC_FILES		 += token/f_tok_remove_one.c
 SRC_FILES		 += token/f_unite_double_ops.c
 SRC_FILES		 += token/f_add_categories.c
 SRC_FILES		 += token/f_expand_variables.c
@@ -65,6 +67,8 @@ SRC_FILES		 += token/f_var_end.c
 SRC_FILES		 += token/f_resolve_quotes.c
 SRC_FILES		 += token/f_join_tokens.c
 SRC_FILES		 += token/f_delete_white_toks.c
+SRC_FILES		 += token/f_toks_to_cmds_n_args.c
+SRC_FILES		 += token/f_add_arg_to_tok.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
@@ -81,13 +85,13 @@ SRC_FILES		+= execution/execution.c
 SRC_FILES		+= execution/exec_utils.c
 SRC_FILES		+= execution/heredoc.c
 
-
 SRC_FILES		+= utils/f_strdup.c
 SRC_FILES		+= utils/f_strscmp.c
 SRC_FILES		+= utils/f_strncpy.c
 SRC_FILES		+= utils/f_strcpy.c
 SRC_FILES		+= utils/f_is_alpha.c
 SRC_FILES		+= utils/f_is_dig.c
+
 
 # Object files directory
 OBJ_DIR			:= obj/

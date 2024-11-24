@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 12:48:08 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:00:30 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char	*f_type_as_str(int type)
 		return ("DQUOTE");
 	if (type == OPERATOR)
 		return ("OPERATOR");
+	if (type == COMMAND)
+		return ("COMMAND");
 	return ("UNKNOWN");
 }
 
@@ -33,17 +35,18 @@ static char	*f_type_as_str(int type)
 void	f_print_tokens(t_main *main)
 {
 	t_tok	*current;
-	int		i;
 	char	*type;
 
+	printf("Token List:\n\n");
 	current = main->tok_head;
-	i = 0;
 	while (current)
 	{
 		type = f_type_as_str(current->type);
-		printf("Token %d:\nType: %s\nString: %s\n\n", i, type,
-			current->str);
+		printf("Type: %s\n", type);
+		printf("String: \"%s\"\n", current->str);
+		while (current->args && *(current->args))
+			printf("Arg: \"%s\"\n", *(current->args)++);
+		printf("\n");
 		current = current->next;
-		i++;
 	}
 }

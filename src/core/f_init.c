@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:10:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 10:36:19 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:50:30 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	init(t_main *main, char *env[])
 	main->env_head = NULL;
 	main->exit_status = 0;
 	main->env_head = f_env_create_lnklst(env);
-	main->gc = NULL;
+	main->gc_head = NULL;
 	f_handle_signals();
 }
