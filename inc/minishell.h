@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 10:35:28 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:59:16 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,9 @@ void						f_add_categories(t_main *main);
 void						f_expand_variables(t_main *main);
 char						*f_var_end(char *str);
 char						*f_var_find_key(t_main *main, char *start,
-									 char *end);
-char						*f_var_new_string(t_main *main, char *oldstr, char *valstr, char *end);
+								char *end);
+char						*f_var_new_string(t_main *main, char *oldstr,
+								char *valstr, char *end);
 void						f_resolve_quotes(t_main *main);
 void						f_join_tokens(t_main *main);
 void						f_delete_white_toks(t_main *main);
