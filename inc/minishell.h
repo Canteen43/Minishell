@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/21 16:30:01 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/24 12:29:39 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,9 @@ void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
 void						f_do_execute(t_pipex *pipex, char *argv,
 								char **envp);
 void						f_do_pipe(t_pipex *pipex, char **envp, char *argv);
-int							f_execution(int argc, char **argv, char **envp);
+int							f_execution(t_main *main);
+void						init_pipex(t_pipex *pipex, t_main *main);
+void						f_set_redirects(t_pipex *pipex, t_main *main);
 
 // get next line
 char						*get_next_line(int fd);
