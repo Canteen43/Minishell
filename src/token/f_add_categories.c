@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:33:23 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:42:33 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:12:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	f_add_categories(t_main *main)
 	current = main->tok_head;
 	while (current)
 	{
-		if (f_strscmp(current->str, 2, ">", ">>", "<", "<<", "|"))
+		if (f_strscmp(current->str, 5, ">", ">>", "<", "<<", "|"))
 			current->type = OPERATOR;
 		else if (current->str[0] == '\'')
 			current->type = SQUOTE;
