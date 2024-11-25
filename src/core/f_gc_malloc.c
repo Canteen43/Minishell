@@ -6,14 +6,14 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:16:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/24 14:46:01 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:14:04 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // Function to add a node to the garbage collector list
-static t_gnode	*add_node(t_main *main, void *ptr)
+t_gnode	*f_gc_add_node(t_main *main, void *ptr)
 {
 	t_gnode	*new_node;
 
@@ -34,7 +34,7 @@ void	*f_gc_malloc(t_main *main, size_t size)
 	ptr = malloc(size);
 	if (ptr == NULL)
 		return (NULL);
-	if (add_node(main, ptr) == NULL)
+	if (f_gc_add_node(main, ptr) == NULL)
 	{
 		free(ptr);
 		return (NULL);

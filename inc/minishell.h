@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 15:33:15 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:11:17 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
 void						*f_gc_malloc(t_main *main, size_t size);
 void						f_gc_clean(t_main *main);
+t_gnode						*f_gc_add_node(t_main *main, void *ptr);
 
 // builtins
 void						f_echo(t_main *main);

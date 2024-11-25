@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:36:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 15:36:17 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:30:11 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	f_export(t_main *main)
 	char	*value;
 	char	**args;
 
-	args = main->current_cmd.args + 1;
+	args = main->tok_head->args + 1;
 	if (!*args)
 	{
 		f_env(main);

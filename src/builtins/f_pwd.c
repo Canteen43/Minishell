@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:35:28 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/03 11:44:16 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:34:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	f_pwd(void)
 	path = getcwd(NULL, 0);
 	if (path == NULL)
 		exit(1);
-	printf("Current working directory: %s\n", path);
+	printf("%s\n", path);
 	free(path);
 	return ;
 }

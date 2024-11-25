@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:28:53 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 15:27:30 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:31:15 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	f_unset(t_main *main)
 	t_env	*node;
 	char	**args;
 
-	args = main->current_cmd.args;
+	args = main->tok_head->args;
 	args++;
 	while (*args)
 	{
