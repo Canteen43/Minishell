@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:11:17 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:47:38 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 // Macros
 # define PROMPT "minishell$ "
+# define MALLOCFAIL "malloc() failed, exited minishell..."
 
 // Env struct
 typedef struct s_environment
@@ -113,6 +114,8 @@ void						f_extract_cmd(t_main *main, char *command_line);
 void						*f_gc_malloc(t_main *main, size_t size);
 void						f_gc_clean(t_main *main);
 t_gnode						*f_gc_add_node(t_main *main, void *ptr);
+void						f_free_and_exit(t_main *main, char *message,
+								int code);
 
 // builtins
 void						f_echo(t_main *main);
@@ -124,16 +127,16 @@ void						f_export(t_main *main);
 int							is_builtin(char *command);
 
 // env
-char						*f_env_strtovalue(char *str);
-int							f_env_add_back(t_env **p_head, char *key,
+char						*f_env_strtovalue(t_main *main, char *str);
+int							f_env_add_back(t_main *main, char *key,
 								char *value);
-char						*f_env_keyvaluetostr(t_env *node);
-char						*f_env_strtokey(char *str);
+char						*f_env_keyvaluetostr(t_main *main, t_env *node);
+char						*f_env_strtokey(t_main *main, char *str);
 t_env						*f_env_find_key(t_env *head, char *key);
 void						f_env_del_one(t_env **p_head, t_env *node);
-t_env						*f_env_new(char *key, char *value);
-t_env						*f_env_create_lnklst(char **env);
-char						**f_env_create_2da(t_env *head);
+t_env						*f_env_new(t_main *main, char *key, char *value);
+t_env						*f_env_create_lnklst(t_main *main, char **env);
+char						**f_env_create_2da(t_main *main);
 void						f_env_del_list(t_env *head);
 void						f_env_del_2da(char **env);
 t_env						*f_env_last(t_env *head);
@@ -144,9 +147,10 @@ void						*f_memcpy(void *dest, const void *src, size_t n);
 int							f_strcmp(char *str1, char *str2);
 char						*f_strchr(const char *s, int c);
 size_t						f_strlen(const char *s);
-char						*f_strjoin(char const *s1, char const *s2);
+char						*f_strjoin(t_main *main,
+								char const *s1, char const *s2);
 char						**f_split(char const *s, char c);
-char						*f_strdup(const char *s);
+char						*f_strdup(t_main *main, const char *s);
 char						*f_strscmp(char *str1, int n, ...);
 int							f_strncmp(char *str1, char *str2, size_t n);
 void						f_strncpy(char *dest, char *src, size_t n);
@@ -156,9 +160,9 @@ bool						f_is_dig(char c);
 // token
 int							f_get_token_end(char *str, int start);
 void						f_tokenize(t_main *main);
-int							f_tok_add_back(t_tok **p_head, char *str);
+int							f_tok_add_back(t_main *main, char *str);
 t_tok						*f_tok_last(t_tok *head);
-t_tok						*f_tok_new(char *str);
+t_tok						*f_tok_new(t_main *main, char *str);
 void						f_print_tokens(t_main *main);
 void						f_create_tokens(t_main *main);
 t_tok						*f_tok_check_syntax(t_main *main);

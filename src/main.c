@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 11:55:49 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:52:57 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int argc, char *argv[], char *env[])
 		main.user_input = readline(PROMPT);
 	}
 	printf("Minishell closed because readline() received EOF\n");
+	f_gc_clean(&main);
 	return (0);
 }

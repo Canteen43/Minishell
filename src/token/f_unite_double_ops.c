@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:06:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 13:01:36 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:31:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	f_unite_double_ops(t_main *main)
 				current->next->str) == 0)
 		{
 			f_tok_remove_one(current->next);
-			current->str = f_strjoin(current->str, current->str);
+			current->str = f_strjoin(main, current->str, current->str);
 		}
 		current = current->next;
 	}

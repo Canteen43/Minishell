@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_add_back.c                                   :+:      :+:    :+:   */
+/*   f_free_and_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:27:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:43:00 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/25 12:03:37 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/25 13:38:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	f_env_add_back(t_main *main, char *key, char *value)
+/*Function to exit print an exit message, free everything with gc and exit.*/
+void	f_free_and_exit(t_main *main, char *message, int code)
 {
-	t_env	*new;
-
-	new = f_env_new(main, key, value);
-	if (main->env_head == NULL)
-		main->env_head = new;
-	else
-		f_env_last(main->env_head)->next = new;
-	return (0);
+	fprintf(stdout, "%s\n", message);
+	f_gc_clean(main);
+	exit (code);
 }

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:58:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 15:06:08 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:32:45 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	f_join_tokens(t_main *main)
 	{
 		while (tok->type == WORD && tok->next && tok->next->type == WORD)
 		{
-			tok->str = f_strjoin(tok->str, tok->next->str);
+			tok->str = f_strjoin(main, tok->str, tok->next->str);
 			f_tok_remove_one(tok->next);
 		}
 		tok = tok->next;

@@ -23,9 +23,9 @@ SRC_FILES		+= main.c
 SRC_FILES		+= core/f_execute.c
 SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_init.c
-SRC_FILES		+= core/f_extract_cmd.c
 SRC_FILES		+= core/f_gc_malloc.c
 SRC_FILES		+= core/f_gc_clean.c
+SRC_FILES		+= core/f_free_and_exit.c
 
 SRC_FILES		+= builtins/f_echo.c
 SRC_FILES		+= builtins/f_pwd.c
@@ -33,7 +33,6 @@ SRC_FILES		+= builtins/f_env.c
 SRC_FILES		+= builtins/f_cd.c
 SRC_FILES		+= builtins/f_unset.c
 SRC_FILES		+= builtins/f_export.c
-SRC_FILES		+= builtins/f_is_builtin.c
 
 SRC_FILES		+= env/f_env_add_back.c
 SRC_FILES		+= env/f_env_create_2da.c
@@ -76,14 +75,13 @@ SRC_FILES		+= utils/f_strcmp.c
 SRC_FILES		+= utils/f_strjoin.c
 SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
-SRC_FILES		+= utils/f_split.c
 
 SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
 SRC_FILES		+= utils/get_next_line/get_next_line.c
 
-SRC_FILES		+= execution/execution.c
-SRC_FILES		+= execution/exec_utils.c
-SRC_FILES		+= execution/heredoc.c
+# SRC_FILES		+= execution/execution.c
+# SRC_FILES		+= execution/exec_utils.c
+# SRC_FILES		+= execution/heredoc.c
 
 SRC_FILES		+= utils/f_strdup.c
 SRC_FILES		+= utils/f_strscmp.c

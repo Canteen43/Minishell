@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:40:28 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 14:50:02 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:19:49 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	f_add_arg_to_tok(t_main *main, char *arg, t_tok *tok)
 
 	len_args_new = sf_get_len_args(tok->args) + 1;
 	args_new = f_gc_malloc(main, len_args_new + 1);
+	if (!args_new)
+		f_free_and_exit(main, MALLOCFAIL, 1);
 	i = 0;
 	while (len_args_new != 1 && tok->args[i])
 	{
