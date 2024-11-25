@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tok_new.c                                        :+:      :+:    :+:   */
+/*   f_is_dig.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 14:35:20 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/20 16:37:45 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/20 17:03:22 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tok	*f_tok_new(char *str)
+/*Returns true if char c is alphabetical, false if not.*/
+bool	f_is_dig(char c)
 {
-	t_tok	*new;
-
-	new = (t_tok *)malloc(sizeof(t_tok));
-	if (new == NULL)
-		return (NULL);
-	new->str = str;
-	new->type = NONE;
-	new->prev = NULL;
-	new->next = NULL;
-	new->args = NULL;
-	return (new);
+	if ((c >= '0' && c <= '9'))
+		return (true);
+	else
+		return (false);
 }

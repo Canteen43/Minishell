@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/21 13:59:17 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/25 11:15:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*Creates a linked list of tokens from the string provided.*/
+// Add f_print_tokens(main); at any point to see what the tokens look like
 void	f_tokenize(t_main *main)
 {
 	f_create_tokens(main);
@@ -23,6 +24,9 @@ void	f_tokenize(t_main *main)
 	}
 	f_unite_double_ops(main);
 	f_add_categories(main);
-	// TODO: Remove this line
-	f_print_tokens(main);
+	f_expand_variables(main);
+	f_resolve_quotes(main);
+	f_join_tokens(main);
+	f_delete_white_toks(main);
+	f_toks_to_cmds_n_args(main);
 }
