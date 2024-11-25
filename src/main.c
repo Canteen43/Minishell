@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 14:44:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:31:02 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[], char *env[])
 	while (main.user_input)
 	{
 		if (f_gc_add_node(&main, main.user_input) == NULL)
-			exit(1);
+			f_free_and_exit(main, MALLOCFAIL, 1);
 		if (main.user_input && *main.user_input)
 			add_history(main.user_input);
 		f_tokenize(&main);
