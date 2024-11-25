@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_gc_clean.c                                       :+:      :+:    :+:   */
+/*   f_do_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
+/*   Created: 2024/11/17 13:05:13 by glevin            #+#    #+#             */
+/*   Updated: 2024/11/25 18:46:58 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Function to clean all allocated memory in the garbage collector
-void	f_gc_clean(t_main *main)
+// void	f_do_execute(t_pipex *pipex, char *argv, char **envp)
+void	f_do_execute(t_main *main, t_pipex *pipex, t_tok *c_tok, char **envp)
 {
-	t_gnode	*tmp;
-	t_gnode	*current;
-
-	current = main->gc_head;
-	while (current)
+	char	*cmd;
+	
+	cmd = f_get_cmd_path(main, pipex->paths, c_tok->str);
+	if (!cmd)
 	{
-		if (current->ptr)
-			free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
+		perror("Command not found");
+		f_exit_clean(pipex, 127);
 	}
-	main->gc_head = NULL;
+	if (execve(cmd, c_tok->args, envp) == -1)
+	{
+		perror("execve failed");
+		free(cmd);
+		f_exit_clean(pipex, 127);
+	}
 }

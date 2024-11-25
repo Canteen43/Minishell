@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_gc_clean.c                                       :+:      :+:    :+:   */
+/*   f_open_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
+/*   Created: 2024/11/21 14:13:20 by glevin            #+#    #+#             */
+/*   Updated: 2024/11/21 14:26:54 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Function to clean all allocated memory in the garbage collector
-void	f_gc_clean(t_main *main)
+int	f_open_file(t_pipex *pipex, char *filename, int i)
 {
-	t_gnode	*tmp;
-	t_gnode	*current;
+	int	fd;
 
-	current = main->gc_head;
-	while (current)
+	fd = 0;
+	if (i == 0)
+		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	if (i == 1)
+		fd = open(filename, O_RDONLY);
+	else if (i == 2)
+		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
 	{
-		if (current->ptr)
-			free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
+		perror("\033[31mError");
+		f_exit_clean(pipex, 1);
 	}
-	main->gc_head = NULL;
+	return (fd);
 }

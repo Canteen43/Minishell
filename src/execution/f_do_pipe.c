@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_gc_clean.c                                       :+:      :+:    :+:   */
+/*   f_do_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
+/*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
+/*   Updated: 2024/11/25 17:00:28 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Function to clean all allocated memory in the garbage collector
-void	f_gc_clean(t_main *main)
+void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *c_tok, char **envp)
 {
-	t_gnode	*tmp;
-	t_gnode	*current;
+	pid_t	pid;
+	int		fd[2];
 
-	current = main->gc_head;
-	while (current)
+	if (pipe(fd) < 0)
+		f_exit_clean(pipex, 1);
+	pid = fork();
+	if (pid == -1)
 	{
-		if (current->ptr)
-			free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
+		perror("fork failed");
+		f_exit_clean(pipex, 1);
 	}
-	main->gc_head = NULL;
+	else if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		f_do_execute(main, pipex, c_tok, envp);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+	}
 }

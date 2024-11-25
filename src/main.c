@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 15:31:02 by kweihman         ###   ########.fr       */
+/*   Created: 2024/10/27 17:58:35 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/25 19:08:51 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ history. Then tokenization happens. After that there is a list of tokens
 (commands and operators). f_execute is only a placeholder until we have proper
 execution. It executes the first command of the token list, if it is a builtin.
 */
+
 int	main(int argc, char *argv[], char *env[])
 {
 	t_main	main;
@@ -30,11 +31,13 @@ int	main(int argc, char *argv[], char *env[])
 	while (main.user_input)
 	{
 		if (f_gc_add_node(&main, main.user_input) == NULL)
-			f_free_and_exit(main, MALLOCFAIL, 1);
+			f_free_and_exit(&main, MALLOCFAIL, 1);
 		if (main.user_input && *main.user_input)
 			add_history(main.user_input);
 		f_tokenize(&main);
-		f_execute(&main);
+		// f_execute_builtin(&main);
+		// f_print_tokens(&main);
+		f_execution(&main, env);
 		main.user_input = readline(PROMPT);
 	}
 	printf("Minishell closed because readline() received EOF\n");

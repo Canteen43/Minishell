@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_gc_clean.c                                       :+:      :+:    :+:   */
+/*   f_init_pipex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
+/*   Created: 2024/11/24 11:45:19 by glevin            #+#    #+#             */
+/*   Updated: 2024/11/25 19:03:25 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Function to clean all allocated memory in the garbage collector
-void	f_gc_clean(t_main *main)
+void	f_init_pipex(t_pipex *pipex, t_main *main)
 {
-	t_gnode	*tmp;
-	t_gnode	*current;
+	t_env	*c_env;
 
-	current = main->gc_head;
-	while (current)
-	{
-		if (current->ptr)
-			free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
-	}
-	main->gc_head = NULL;
+	c_env = main->env_head;
+	while (f_strncmp("PATH", c_env->key, 4))
+		c_env = c_env->next;
+	pipex->paths = f_split(main, c_env->value, ':');
+	pipex->envp = f_env_create_2da(main);
 }

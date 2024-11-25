@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_gc_clean.c                                       :+:      :+:    :+:   */
+/*   f_set_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
+/*   Created: 2024/11/24 12:01:04 by glevin            #+#    #+#             */
+/*   Updated: 2024/11/25 14:36:49 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Function to clean all allocated memory in the garbage collector
-void	f_gc_clean(t_main *main)
+void	f_set_redirects(t_pipex *pipex, t_main *main)
 {
-	t_gnode	*tmp;
-	t_gnode	*current;
+	t_tok	*c_tok;
 
-	current = main->gc_head;
-	while (current)
+	c_tok = main->tok_head;
+	while (c_tok)
 	{
-		if (current->ptr)
-			free(current->ptr);
-		tmp = current;
-		current = current->next;
-		free(tmp);
+		if (f_strcmp(c_tok->str, ">") == 0)
+			pipex->outfile = f_open_file(pipex, c_tok->args[0], 2);
+		else if (f_strcmp(c_tok->str, "<") == 0)
+			pipex->infile = f_open_file(pipex, c_tok->args[0], 1);
+		c_tok = c_tok->next;
 	}
-	main->gc_head = NULL;
 }
