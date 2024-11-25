@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_del_list.c                                   :+:      :+:    :+:   */
+/*   f_free_and_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 08:37:07 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:38:01 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/25 12:03:37 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/25 13:38:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Deletes a linked list of env variables. */
-void	f_env_del_list(t_env *head)
+/*Function to exit print an exit message, free everything with gc and exit.*/
+void	f_free_and_exit(t_main *main, char *message, int code)
 {
-	t_env	*tmp;
-
-	while (head != NULL)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
-	}
+	fprintf(stdout, "%s\n", message);
+	f_gc_clean(main);
+	exit (code);
 }

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:25:48 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:19:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:15:43 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ char	*f_var_find_key(t_main *main, char *start, char *end)
 
 	if (*start == '?')
 		return ("0");
-	var_string = malloc(end - start + 2);
+	var_string = f_gc_malloc(main, end - start + 2);
 	if (!var_string)
-		exit(1);
+		f_free_and_exit(main, MALLOCFAIL, 1);
 	f_strncpy(var_string, start, end - start + 1);
 	var_string[end - start + 1] = '\0';
 	node = f_env_find_key(main->env_head, var_string);
-	free(var_string);
 	if (!node)
 		return (NULL);
 	return (node->value);

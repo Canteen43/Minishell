@@ -23,9 +23,9 @@ SRC_FILES		+= main.c
 SRC_FILES		+= core/f_execute_builtin.c
 SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_init.c
-SRC_FILES		+= core/f_extract_cmd.c
 SRC_FILES		+= core/f_gc_malloc.c
 SRC_FILES		+= core/f_gc_clean.c
+SRC_FILES		+= core/f_free_and_exit.c
 
 SRC_FILES		+= builtins/f_echo.c
 SRC_FILES		+= builtins/f_pwd.c
@@ -33,14 +33,11 @@ SRC_FILES		+= builtins/f_env.c
 SRC_FILES		+= builtins/f_cd.c
 SRC_FILES		+= builtins/f_unset.c
 SRC_FILES		+= builtins/f_export.c
-SRC_FILES		+= builtins/f_is_builtin.c
 
 SRC_FILES		+= env/f_env_add_back.c
 SRC_FILES		+= env/f_env_create_2da.c
 SRC_FILES		+= env/f_env_create_lnklst.c
-SRC_FILES		+= env/f_env_del_2da.c
-SRC_FILES		+= env/f_env_del_list.c
-SRC_FILES		+= env/f_env_del_one.c
+SRC_FILES		+= env/f_env_remove_one.c
 SRC_FILES		+= env/f_env_find_key.c
 SRC_FILES		+= env/f_env_keyvaluetostr.c
 SRC_FILES		+= env/f_env_last.c

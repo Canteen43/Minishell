@@ -2,3 +2,5 @@
 /obj
 minishell
 a.out
+.*
+minishell

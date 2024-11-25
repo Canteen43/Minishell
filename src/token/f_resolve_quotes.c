@@ -6,13 +6,14 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:39:45 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/23 17:04:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:32:36 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// TODO: handle malloc failure
+/*Get rid of quote characters at start and end of tokens of type SQUOTE and
+DQUOTE.*/
 void	f_resolve_quotes(t_main *main)
 {
 	t_tok	*tok;
@@ -25,7 +26,9 @@ void	f_resolve_quotes(t_main *main)
 		if (tok->type == DQUOTE || tok->type == SQUOTE)
 		{
 			newlen = f_strlen(tok->str) - 2;
-			newstr = malloc(newlen + 1);
+			newstr = f_gc_malloc(main, newlen + 1);
+			if (!newstr)
+				f_free_and_exit(main, MALLOCFAIL, 1);
 			strncpy(newstr, tok->str + 1, newlen);
 			newstr[newlen] = '\0';
 			tok->str = newstr;
