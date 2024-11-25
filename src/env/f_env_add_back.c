@@ -3,25 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   f_env_add_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:27:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 09:51:52 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:50:12 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	f_env_add_back(t_env **p_head, char *key, char *value)
+void	f_env_add_back(t_main *main, char *key, char *value)
 {
 	t_env	*new;
 
-	new = f_env_new(key, value);
-	if (new == NULL)
-		return (-1);
-	if (*p_head == NULL)
-		*p_head = new;
+	new = f_env_new(main, key, value);
+	if (main->env_head == NULL)
+		main->env_head = new;
 	else
-		f_env_last(*p_head)->next = new;
-	return (0);
+		f_env_last(main->env_head)->next = new;
 }

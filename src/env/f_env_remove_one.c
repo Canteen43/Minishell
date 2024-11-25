@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   f_env_remove_one.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 08:27:54 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:11:50 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 08:39:54 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/25 15:24:19 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
 
-int	main(void)
+/* Deletes one node of a linked list of env variables. */
+void	f_env_remove_one(t_main *main, t_env *node)
 {
-	char	*str;
-	char	**arr;
-	int		i;
+	t_env	*tmp;
 
-	str = "echo hi hi hi hi hi h    ";
-	arr = f_split(str, ' ');
-	printf("String: %s\n", str);
-	printf("Command: %s\n", arr[0]);
-	i = 0;
-	while (arr[i])
+	if (node == main->env_head)
+		main->env_head = node->next;
+	else
 	{
-		printf("arr[%d]: %s\n", i, arr[i]);
-		i++;
+		tmp = main->env_head;
+		while (tmp->next != node)
+			tmp = tmp->next;
+		tmp->next = node->next;
 	}
 }

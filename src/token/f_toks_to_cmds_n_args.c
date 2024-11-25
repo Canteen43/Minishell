@@ -6,11 +6,14 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:11:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 11:28:50 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:34:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// Static Function:
+static void	sf_handle_word(t_main *main, t_tok *tok, bool *cmd_set);
 
 /*Iterates through linked list of tokens. Inbetween pipes, it will make the
 first word a command and the rest its args.*/
@@ -28,12 +31,12 @@ void	f_toks_to_cmds_n_args(t_main *main)
 		if (tok->type == OPERATOR && f_strcmp(tok->str, "|") == 0)
 			cmd_set = false;
 		else if (tok->type == WORD)
-			sf_handle_word(tok, &cmd_set);
+			sf_handle_word(main, tok, &cmd_set);
 		tok = tok->next;
 	}
 }
 
-static void	sf_handle_word(t_tok *tok, bool *cmd_set)
+static void	sf_handle_word(t_main *main, t_tok *tok, bool *cmd_set)
 {
 	t_tok	*target;
 

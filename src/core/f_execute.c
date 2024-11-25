@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:31:59 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:02:00 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void	f_execute(t_main *main)
 	if (strcmp(tok->str, "echo") == 0)
 		f_echo(main);
 	else if (strcmp(tok->str, "pwd") == 0)
-		f_pwd();
+		f_pwd(main);
 	else if (strcmp(tok->str, "exit") == 0)
-	{
-		printf("Exiting Minishell");
-		exit(0);
-	}
+		f_free_and_exit(main, "Exiting Minishell", 0);
 	else if (strcmp(tok->str, "env") == 0)
 		f_env(main);
 	else if (strcmp(tok->str, "cd") == 0)
