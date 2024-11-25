@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:04:07 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 18:57:17 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/25 19:14:31 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,13 @@ void	f_execution(t_main *main, char **envp)
 	f_set_redirects(&pipex, main);
 	dup2(pipex.infile, 0);
 	final_cmd_tok = f_find_final_cmd(main);
-	// printf("final_cmd_tok->str: %s\n", final_cmd_tok->str);
 	c_tok = main->tok_head;
-	// f_print_tokens(main);
 	while (c_tok)
 	{
 		if (c_tok == final_cmd_tok)
 			break ;
 		if (c_tok->type == COMMAND)
-		{
 			f_do_pipe(main, &pipex, c_tok, envp);
-		}
 		c_tok = c_tok->next;
 	}
 	f_final_execute(main, &pipex, c_tok, envp);

@@ -74,7 +74,6 @@ SRC_FILES		+= utils/f_strjoin.c
 SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
 SRC_FILES		+= utils/f_split.c
-SRC_FILES		+= utils/f_free_split.c
 
 SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
 SRC_FILES		+= utils/get_next_line/get_next_line.c
