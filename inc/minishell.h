@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 12:29:39 by glevin           ###   ########.fr       */
+/*   Updated: 2024/11/25 14:27:16 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ typedef struct s_gnode
 	struct s_gnode			*next;
 }							t_gnode;
 
-typedef struct s_gc
-{
-	t_gnode					*head;
-}							t_gc;
-
 // Token Type enum
 typedef enum e_token_type
 {
@@ -76,17 +71,17 @@ typedef enum e_token_type
 	SQUOTE,
 	DQUOTE,
 	OPERATOR,
-	CMD,
+	COMMAND,
 }							t_type;
 
 // Token struct
 typedef struct s_token
 {
-	char					*str;
-	t_type					type;
-	char					**args;
 	struct s_token			*prev;
 	struct s_token			*next;
+	t_type					type;
+	char					*str;
+	char					**args;
 }							t_tok;
 
 // Main struct
@@ -96,7 +91,8 @@ typedef struct s_main
 	t_cmd					current_cmd;
 	char					*user_input;
 	t_tok					*tok_head;
-	t_gc					*gc;
+	int						exit_status;
+	t_gnode					*gc_head;
 }							t_main;
 
 // Pipex struct
@@ -104,16 +100,21 @@ typedef struct s_pipex
 {
 	int						infile;
 	int						outfile;
+	char *const *envp;
 	char					**paths;
 
 }							t_pipex;
 
 // Function declarations
 // core
-void						f_execute_builtin(t_main *main);
+void						f_execute(t_main *main);
 void						f_handle_signals(void);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
+void						*f_gc_malloc(t_main *main, size_t size);
+void						f_gc_clean(t_main *main);
+t_gnode						*f_gc_add_node(t_main *main, void *ptr);
+
 // builtins
 void						f_echo(t_main *main);
 void						f_pwd(void);
@@ -149,8 +150,10 @@ char						**f_split(char const *s, char c);
 char						*f_strdup(const char *s);
 char						*f_strscmp(char *str1, int n, ...);
 int							f_strncmp(char *str1, char *str2, size_t n);
-void						f_free_split(char **split);
-
+void						f_strncpy(char *dest, char *src, size_t n);
+void						f_strcpy(char *dest, char *src);
+bool						f_is_alpha(char c);
+bool						f_is_dig(char c);
 // token
 int							f_get_token_end(char *str, int start);
 void						f_tokenize(t_main *main);
@@ -160,21 +163,32 @@ t_tok						*f_tok_new(char *str);
 void						f_print_tokens(t_main *main);
 void						f_create_tokens(t_main *main);
 t_tok						*f_tok_check_syntax(t_main *main);
-void						f_tok_del_one(t_tok *tok);
+void						f_tok_remove_one(t_tok *tok);
 void						f_unite_double_ops(t_main *main);
 void						f_add_categories(t_main *main);
+void						f_expand_variables(t_main *main);
+char						*f_var_end(char *str);
+char						*f_var_find_key(t_main *main, char *start,
+								char *end);
+char						*f_var_new_string(t_main *main, char *oldstr,
+								char *valstr, char *end);
+void						f_resolve_quotes(t_main *main);
+void						f_join_tokens(t_main *main);
+void						f_delete_white_toks(t_main *main);
+void						f_add_arg_to_tok(t_main *main, char *arg,
+								t_tok *tok);
+void						f_toks_to_cmds_n_args(t_main *main);
 
 // execution
 void						f_exit_clean(t_pipex *pipex, int ecode);
 char						*f_get_cmd_path(char **paths, char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
 void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
-void						f_do_execute(t_pipex *pipex, char *argv,
-								char **envp);
-void						f_do_pipe(t_pipex *pipex, char **envp, char *argv);
-int							f_execution(t_main *main);
-void						init_pipex(t_pipex *pipex, t_main *main);
+void						f_do_pipe(t_pipex *pipex, t_tok *c_tok);
+void						f_init_pipex(t_pipex *pipex, t_main *main);
 void						f_set_redirects(t_pipex *pipex, t_main *main);
+void						f_do_execute(t_pipex *pipex, t_tok *c_tok);
+void						f_execution(t_main *main);
 
 // get next line
 char						*get_next_line(int fd);
@@ -183,9 +197,5 @@ char						*ft_strdup(const char *string);
 char						*ft_substr(char const *s, unsigned int start,
 								size_t len);
 char						*ft_strjoin(char const *s1, char const *s2);
-
-// garbage collection
-void						*gc_malloc(size_t size, t_gc *gc);
-void						gc_clean(t_gc *gc);
 
 #endif // MINISHELL_H
