@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tok_new.c                                        :+:      :+:    :+:   */
+/*   f_delete_white_toks.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/24 14:35:20 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 17:12:55 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/24 13:00:33 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tok	*f_tok_new(char *str)
+/*Deletes all WHITE tokens from the token linked list. They were needed to
+hold information on which tokens to join.*/
+void	f_delete_white_toks(t_main *main)
 {
-	t_tok	*new;
+	t_tok	*tok;
 
-	new = (t_tok *)malloc(sizeof(t_tok));
-	if (new == NULL)
-		return (NULL);
-	new->str = str;
-	new->type = NONE;
-	new->prev = NULL;
-	new->next = NULL;
-	new->args = NULL;
-	return (new);
+	while (main->tok_head->type == WHITE)
+		main->tok_head = main->tok_head->next;
+	main->tok_head->prev = NULL;
+	tok = main->tok_head;
+	while (tok)
+	{
+		if (tok->type == WHITE)
+			f_tok_remove_one(tok);
+		tok = tok->next;
+	}
 }

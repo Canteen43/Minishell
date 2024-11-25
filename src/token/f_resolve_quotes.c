@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_extract_cmd.c                                    :+:      :+:    :+:   */
+/*   f_resolve_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 12:45:45 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/06 13:27:48 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 16:39:45 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/23 17:04:04 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_extract_cmd(t_main *main, char *command_line)
+// TODO: handle malloc failure
+void	f_resolve_quotes(t_main *main)
 {
-	char	**arr;
+	t_tok	*tok;
+	size_t	newlen;
+	char	*newstr;
 
-	arr = f_split(command_line, ' ');
-	main->current_cmd.command = arr[0];
-	main->current_cmd.args = arr;
+	tok = main->tok_head;
+	while (tok)
+	{
+		if (tok->type == DQUOTE || tok->type == SQUOTE)
+		{
+			newlen = f_strlen(tok->str) - 2;
+			newstr = malloc(newlen + 1);
+			strncpy(newstr, tok->str + 1, newlen);
+			newstr[newlen] = '\0';
+			tok->str = newstr;
+			tok->type = WORD;
+		}
+		tok = tok->next;
+	}
 }

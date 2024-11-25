@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tok_del_one.c                                    :+:      :+:    :+:   */
+/*   f_strncpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 11:13:13 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:13:41 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/20 19:05:22 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/20 19:09:56 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Deletes one token*/
-void	f_tok_del_one(t_tok *tok)
+/* Copies at most n bytes from src to dest.*/
+void	f_strncpy(char *dest, char *src, size_t n)
 {
-	if (tok->prev)
-		tok->prev->next = tok->next;
-	if (tok->next)
-		tok->next->prev = tok->prev;
-	free(tok->str);
-	free(tok);
+	while (*src && n)
+	{
+		*dest++ = *src++;
+		n--;
+	}
 }

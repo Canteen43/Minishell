@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 10:57:17 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/16 10:58:10 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:04:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	f_create_tokens(t_main *main)
 		end = f_get_token_end(main->user_input, i);
 		if (end == -1)
 			exit(1);
-		new = malloc(2 + end - i);
-		if (!new)
-			exit(1);
+		new = malloc(end - i + 1 + 1);
 		memcpy(new, main->user_input + i, end - i + 1);
+		new[end - i + 1] = '\0';
 		if (f_tok_add_back(&main->tok_head, new) == -1)
 			exit(1);
 		i = end + 1;

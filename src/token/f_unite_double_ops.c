@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:06:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/17 11:26:58 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:01:36 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	f_unite_double_ops(t_main *main)
 		if (f_strscmp(current->str, 2, "<", ">") && strcmp(current->str,
 				current->next->str) == 0)
 		{
-			f_tok_del_one(current->next);
+			f_tok_remove_one(current->next);
 			current->str = f_strjoin(current->str, current->str);
 		}
 		current = current->next;

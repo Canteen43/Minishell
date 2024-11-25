@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_unset.c                                          :+:      :+:    :+:   */
+/*   f_join_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 15:28:53 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:31:15 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/23 16:58:08 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/24 15:06:08 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_unset(t_main *main)
+/*Joins adjacent WORD tokens into one token. Used after variable expansion and
+quote resolution to join strings that were not separate by whitespace but were
+in quotes.*/
+void	f_join_tokens(t_main *main)
 {
-	t_env	*node;
-	char	**args;
+	t_tok	*tok;
 
-	args = main->tok_head->args;
-	args++;
-	while (*args)
+	tok = main->tok_head;
+	while (tok)
 	{
-		node = f_env_find_key(main->env_head, *args);
-		if (node)
-			f_env_del_one(&main->env_head, node);
-		else
-			printf("No match found for key |%s|.\n", *args);
-		args++;
+		while (tok->type == WORD && tok->next && tok->next->type == WORD)
+		{
+			tok->str = f_strjoin(tok->str, tok->next->str);
+			f_tok_remove_one(tok->next);
+		}
+		tok = tok->next;
 	}
 }
