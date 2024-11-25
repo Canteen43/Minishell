@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_gc_clean.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:00:37 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/24 14:47:36 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:10:33 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	f_gc_clean(t_main *main)
 	current = main->gc_head;
 	while (current)
 	{
-		free(current->ptr);
+		if (current->ptr)
+			free(current->ptr);
 		tmp = current;
 		current = current->next;
 		free(tmp);
