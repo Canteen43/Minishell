@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_env_del_list.c                                   :+:      :+:    :+:   */
+/*   f_env_remove_one.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 08:37:07 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/04 08:38:01 by kweihman         ###   ########.fr       */
+/*   Created: 2024/11/04 08:39:54 by kweihman          #+#    #+#             */
+/*   Updated: 2024/11/25 15:24:19 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Deletes a linked list of env variables. */
-void	f_env_del_list(t_env *head)
+/* Deletes one node of a linked list of env variables. */
+void	f_env_remove_one(t_main *main, t_env *node)
 {
 	t_env	*tmp;
 
-	while (head != NULL)
+	if (node == main->env_head)
+		main->env_head = node->next;
+	else
 	{
-		tmp = head;
-		head = head->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
+		tmp = main->env_head;
+		while (tmp->next != node)
+			tmp = tmp->next;
+		tmp->next = node->next;
 	}
 }

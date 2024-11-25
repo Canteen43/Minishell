@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:47:38 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:22:24 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,22 @@ void						f_free_and_exit(t_main *main, char *message,
 
 // builtins
 void						f_echo(t_main *main);
-void						f_pwd(void);
+void						f_pwd(t_main *main);
 void						f_env(t_main *main);
 void						f_cd(t_main *main);
 void						f_unset(t_main *main);
 void						f_export(t_main *main);
-int							is_builtin(char *command);
 
 // env
 char						*f_env_strtovalue(t_main *main, char *str);
-int							f_env_add_back(t_main *main, char *key,
+void						f_env_add_back(t_main *main, char *key,
 								char *value);
 char						*f_env_keyvaluetostr(t_main *main, t_env *node);
 char						*f_env_strtokey(t_main *main, char *str);
 t_env						*f_env_find_key(t_env *head, char *key);
-void						f_env_del_one(t_env **p_head, t_env *node);
+void						f_env_remove_one(t_main *main, t_env *node);
 t_env						*f_env_new(t_main *main, char *key, char *value);
-t_env						*f_env_create_lnklst(t_main *main, char **env);
+void						f_env_create_lnklst(t_main *main, char **env);
 char						**f_env_create_2da(t_main *main);
 void						f_env_del_list(t_env *head);
 void						f_env_del_2da(char **env);

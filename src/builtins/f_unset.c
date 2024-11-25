@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:28:53 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:31:15 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:23:29 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	f_unset(t_main *main)
 	{
 		node = f_env_find_key(main->env_head, *args);
 		if (node)
-			f_env_del_one(&main->env_head, node);
+			f_env_remove_one(main, node);
 		else
 			printf("No match found for key |%s|.\n", *args);
 		args++;

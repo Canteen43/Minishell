@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 08:43:38 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:56:08 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:12:41 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ char	**f_env_create_2da(t_main *main)
 	while (node != NULL)
 	{
 		env[i] = f_env_keyvaluetostr(main, node);
-		if (env[i] == NULL)
-		{
-			f_env_del_2da(env);
-			return (NULL);
-		}
 		node = node->next;
 		i++;
 	}
