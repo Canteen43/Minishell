@@ -6,13 +6,14 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 10:57:17 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:48:59 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:40:32 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*Creates a linked list of tokens from the string provided.*/
+//TODO: Display new line instead of exiting for unclosed double quotes
 void	f_create_tokens(t_main *main)
 {
 	int		i;
@@ -31,7 +32,7 @@ void	f_create_tokens(t_main *main)
 		}
 		end = f_get_token_end(main->user_input, i);
 		if (end == -1)
-			exit(1);
+			f_free_and_exit(main, "found unclosed quotes", 1);
 		new = f_gc_malloc(main, end - i + 1 + 1);
 		if (!new)
 			f_free_and_exit(main, MALLOCFAIL, 1);

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/26 09:54:16 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:40:12 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@
 
 // Macros
 # define PROMPT "minishell$ "
-# define MALLOCFAIL "malloc() failed, exited minishell..."
+# define MALLOCFAIL "malloc() failed"
+# define SIGFAIL "signal function failed"
 
 // Env struct
 typedef struct s_environment
