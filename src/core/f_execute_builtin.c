@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_execute.c                                        :+:      :+:    :+:   */
+/*   f_execute_builtin.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 15:02:00 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:37:40 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_execute(t_main *main)
+void	f_execute_builtin(t_main *main)
 {
 	t_tok	*tok;
 

@@ -20,7 +20,7 @@ SRC_DIR			:= src/
 # Source files
 SRC_FILES		+= main.c
 
-SRC_FILES		+= core/f_execute.c
+SRC_FILES		+= core/f_execute_builtin.c
 SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_init.c
 SRC_FILES		+= core/f_gc_malloc.c
@@ -73,13 +73,20 @@ SRC_FILES		+= utils/f_strcmp.c
 SRC_FILES		+= utils/f_strjoin.c
 SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
+SRC_FILES		+= utils/f_split.c
 
 SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
 SRC_FILES		+= utils/get_next_line/get_next_line.c
 
-# SRC_FILES		+= execution/execution.c
-# SRC_FILES		+= execution/exec_utils.c
-# SRC_FILES		+= execution/heredoc.c
+SRC_FILES		+= execution/f_do_execute.c
+SRC_FILES		+= execution/f_do_pipe.c
+SRC_FILES		+= execution/f_execution.c
+SRC_FILES		+= execution/f_exit_clean.c
+SRC_FILES		+= execution/f_get_cmd_path.c
+SRC_FILES		+= execution/f_heredoc.c
+SRC_FILES		+= execution/f_init_pipex.c
+SRC_FILES		+= execution/f_open_file.c
+SRC_FILES		+= execution/f_set_redirects.c
 
 SRC_FILES		+= utils/f_strdup.c
 SRC_FILES		+= utils/f_strscmp.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_toks_to_cmds_n_args.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:11:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:34:28 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:46:41 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ first word a command and the rest its args.*/
 void	f_toks_to_cmds_n_args(t_main *main)
 {
 	t_tok	*tok;
-	t_tok	*target;
 	bool	cmd_set;
 
 	tok = main->tok_head;
 	cmd_set = false;
 	while (tok)
 	{
-		target = NULL;
 		if (tok->type == OPERATOR && f_strcmp(tok->str, "|") == 0)
 			cmd_set = false;
 		else if (tok->type == WORD)
