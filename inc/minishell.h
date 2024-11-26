@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 15:22:24 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/26 09:54:16 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ void						*f_memcpy(void *dest, const void *src, size_t n);
 int							f_strcmp(char *str1, char *str2);
 char						*f_strchr(const char *s, int c);
 size_t						f_strlen(const char *s);
-char						*f_strjoin(t_main *main,
-								char const *s1, char const *s2);
+char						*f_strjoin(t_main *main, char const *s1,
+								char const *s2);
 char						**f_split(char const *s, char c);
 char						*f_strdup(t_main *main, const char *s);
 char						*f_strscmp(char *str1, int n, ...);
