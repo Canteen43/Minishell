@@ -1,0 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    readline.supp                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mrodenbu <mrodenbu@student.42berlin.d      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/22 12:55:36 by mrodenbu          #+#    #+#              #
+#    Updated: 2024/09/22 12:55:38 by mrodenbu         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+{
+    leak readline
+    Memcheck:Leak
+    ...
+    fun:readline
+}
+{
+    leak add_history
+    Memcheck:Leak
+    ...
+    fun:add_history
+}
