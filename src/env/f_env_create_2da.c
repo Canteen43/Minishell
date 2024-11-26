@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 08:43:38 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 15:12:41 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:56:09 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* Creates a 2d array of env variables. Returns the 2d array. */
 char	**f_env_create_2da(t_main *main)
 {
-	char	**env;
-	t_env	*node;
-	int		i;
+	char		**env;
+	t_env		*node;
+	int			i;
 
 	env = (char **)f_gc_malloc(main,
 			sizeof(char *) * (f_env_lstlen(main->env_head) + 1));

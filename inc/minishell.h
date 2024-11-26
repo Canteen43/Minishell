@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/26 13:32:31 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:13:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_pipex
 {
 	int						infile;
 	int						outfile;
-	char *const *envp;
+	char *const				*envp;
 	char					**paths;
 
 }							t_pipex;
@@ -113,16 +113,6 @@ void						f_execute_builtin(t_main *main);
 void						f_handle_signals(void);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
-void						*f_gc_malloc(t_main *main, size_t size);
-void						f_gc_clean(t_main *main);
-t_gnode						*f_gc_add_node(t_main *main, void *ptr);
-
-void						*f_gc_malloc(t_main *main, size_t size);
-void						f_gc_clean(t_main *main);
-t_gnode						*f_gc_add_node(t_main *main, void *ptr);
-void						f_free_and_exit(t_main *main, char *message,
-								int code);
-
 void						*f_gc_malloc(t_main *main, size_t size);
 void						f_gc_clean(t_main *main);
 t_gnode						*f_gc_add_node(t_main *main, void *ptr);
