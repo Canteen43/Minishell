@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 10:56:51 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:06:43 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,14 @@ typedef struct s_pipex
 {
 	int						infile;
 	int						outfile;
-	char *const				*envp;
+	char *const *envp;
 	char					**paths;
 
 }							t_pipex;
 
 // Function declarations
 // core
+void						f_handle_signals(void);
 void						f_execute_builtin(t_main *main);
 void						f_signal_setup(int type);
 void						init(t_main *main, char *env[]);
@@ -140,6 +141,8 @@ char						*f_env_keyvaluetostr(t_main *main, t_env *node);
 char						*f_env_strtokey(t_main *main, char *str);
 t_env						*f_env_find_key(t_env *head, char *key);
 void						f_env_remove_one(t_main *main, t_env *node);
+void						f_tok_remove_one_universal(t_main *main,
+								t_tok *tok);
 t_env						*f_env_new(t_main *main, char *key, char *value);
 void						f_env_create_lnklst(t_main *main, char **env);
 char						**f_env_create_2da(t_main *main);
@@ -211,13 +214,15 @@ char						*f_get_cmd_path(t_main *main, char **paths,
 								char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
 void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
-void						f_do_pipe(t_main *main, t_pipex *pipex,
-								t_tok *c_tok, char **envp);
+void						f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
 void						f_set_redirects(t_pipex *pipex, t_main *main);
 void						f_do_execute(t_main *main, t_pipex *pipex,
-								t_tok *c_tok, char **envp);
-void						f_execution(t_main *main, char **envp);
+								t_tok *tok);
+void						f_execution(t_main *main);
+t_tok						*f_find_final_cmd(t_main *main);
+void						f_final_execute(t_main *main, t_pipex *pipex,
+								t_tok *tok);
 
 // get next line
 char						*get_next_line(int fd);
