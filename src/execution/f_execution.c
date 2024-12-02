@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_execution.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:04:07 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/02 10:53:01 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/02 11:33:39 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	f_execution(t_main *main)
 	f_init_pipex(&pipex, main);
 	f_set_redirects(&pipex, main);
 	final_cmd_tok = f_find_final_cmd(main);
-	dup2(pipex.infile, 0);
+	dup2(pipex.infile, STDIN_FILENO);
 	tok = main->tok_head;
 	while (tok)
 	{
