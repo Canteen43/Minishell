@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/30 16:30:54 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/02 11:07:01 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 received). In the loop: First the readline return is added to gc, so that it
 will later be freed. Then non-empty lines will be added to the readline-builtin-
 history. Then tokenization happens. After that there is a list of tokens
-(commands and operators). f_execute is only a placeholder until we have proper
-execution. It executes the first command of the token list, if it is a builtin.
+(commands and operators).
 */
 
 int	main(int argc, char *argv[], char *env[])

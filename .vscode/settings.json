@@ -3,6 +3,9 @@
 		"minishell.h": "c",
 		"errno.h": "c",
 		"type_traits": "c",
-		"compare": "c"
+		"compare": "c",
+		"ioctl.h": "c",
+		"readline.h": "c",
+		"history.h": "c"
 	}
 }
