@@ -6,14 +6,15 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:01:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/27 18:01:38 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:19:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // Static functions:
-static void	sf_handle_sigint(int signum);
+static void	sf_handle_sigint_prompt(int signum);
+static void	sf_handle_sigint_heredoc(int signum);
 static void	sf_exit_signal_error(int code);
 static void	sf_simple_sigaction(struct sigaction *sa_sig,
 				void (*f_handler)(int), int signum);
@@ -24,17 +25,26 @@ void	f_signal_setup(int type)
 {
 	struct sigaction	sa_quit;
 	struct sigaction	sa_int;
-	struct sigaction	sa_dfl;
 
-	if (type == SIGSETSHELL)
+	if (type == SIGMODE_INTERACTIVE)
 	{
 		sf_simple_sigaction(&sa_quit, SIG_IGN, SIGQUIT);
-		sf_simple_sigaction(&sa_int, sf_handle_sigint, SIGINT);
+		sf_simple_sigaction(&sa_int, sf_handle_sigint_prompt, SIGINT);
 	}
-	else if (type == SIGSETCHILD)
+	else if (type == SIGMODE_RESET)
 	{
-		sf_simple_sigaction(&sa_dfl, SIG_DFL, SIGQUIT);
-		sf_simple_sigaction(&sa_dfl, SIG_DFL, SIGINT);
+		sf_simple_sigaction(&sa_quit, SIG_DFL, SIGQUIT);
+		sf_simple_sigaction(&sa_int, SIG_DFL, SIGINT);
+	}
+	else if (type == SIGMODE_WAITFORCHILD)
+	{
+		sf_simple_sigaction(&sa_quit, SIG_IGN, SIGQUIT);
+		sf_simple_sigaction(&sa_int, SIG_IGN, SIGINT);
+	}
+	else if (type == SIGMODE_HEREDOC)
+	{
+		sf_simple_sigaction(&sa_quit, SIG_IGN, SIGQUIT);
+		sf_simple_sigaction(&sa_int, sf_handle_sigint_heredoc, SIGINT);
 	}
 }
 
@@ -55,12 +65,18 @@ static void	sf_exit_signal_error(int code)
 	exit(code);
 }
 
-// TODO: add sigint setup
-static void	sf_handle_sigint(int signum)
+static void	sf_handle_sigint_prompt(int signum)
 {
 	(void) signum;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+
+static void	sf_handle_sigint_heredoc(int signum)
+{
+	(void) signum;
+	write(STDOUT_FILENO, "\n", 1);
+	exit(1);
 }

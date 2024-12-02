@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/27 18:02:13 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:58:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 # define SIGFAIL "signal function failed"
 # define SIGSETSHELL 1
 # define SIGSETCHILD 2
+
+# define SIGMODE_INTERACTIVE 1
+# define SIGMODE_RESET 2
+# define SIGMODE_WAITFORCHILD 3
+# define SIGMODE_HEREDOC 4
 
 // Env struct
 typedef struct s_environment
