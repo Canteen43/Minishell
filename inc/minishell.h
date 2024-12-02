@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 09:58:28 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:56:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 # define PROMPT "minishell$ "
 # define MALLOCFAIL "malloc() failed"
 # define SIGFAIL "signal function failed"
-# define SIGSETSHELL 1
-# define SIGSETCHILD 2
 
 # define SIGMODE_INTERACTIVE 1
 # define SIGMODE_RESET 2
