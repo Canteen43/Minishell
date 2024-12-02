@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/26 17:13:52 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:56:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@
 # define PROMPT "minishell$ "
 # define MALLOCFAIL "malloc() failed"
 # define SIGFAIL "signal function failed"
+
+# define SIGMODE_INTERACTIVE 1
+# define SIGMODE_RESET 2
+# define SIGMODE_WAITFORCHILD 3
+# define SIGMODE_HEREDOC 4
 
 // Env struct
 typedef struct s_environment
@@ -110,7 +115,7 @@ typedef struct s_pipex
 // Function declarations
 // core
 void						f_execute_builtin(t_main *main);
-void						f_handle_signals(void);
+void						f_signal_setup(int type);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
 void						*f_gc_malloc(t_main *main, size_t size);
