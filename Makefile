@@ -20,7 +20,6 @@ SRC_DIR			:= src/
 # Source files
 SRC_FILES		+= main.c
 
-SRC_FILES		+= core/f_execute_builtin.c
 SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_init.c
 SRC_FILES		+= core/f_gc_malloc.c
@@ -55,6 +54,7 @@ SRC_FILES		 += token/f_print_tokens.c
 SRC_FILES		 += token/f_create_tokens.c
 SRC_FILES		 += token/f_tok_check_syntax.c
 SRC_FILES		 += token/f_tok_remove_one.c
+SRC_FILES		 += token/f_tok_remove_one_universal.c
 SRC_FILES		 += token/f_unite_double_ops.c
 SRC_FILES		 += token/f_add_categories.c
 SRC_FILES		 += token/f_expand_variables.c
@@ -87,6 +87,9 @@ SRC_FILES		+= execution/f_heredoc.c
 SRC_FILES		+= execution/f_init_pipex.c
 SRC_FILES		+= execution/f_open_file.c
 SRC_FILES		+= execution/f_set_redirects.c
+SRC_FILES		+= execution/f_execute_builtin.c
+SRC_FILES		+= execution/f_final_execute.c
+SRC_FILES		+= execution/f_find_final_cmd.c
 
 SRC_FILES		+= utils/f_strdup.c
 SRC_FILES		+= utils/f_strscmp.c

@@ -6,16 +6,17 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:15:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 16:37:40 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/02 10:44:59 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_execute_builtin(t_main *main)
+int	f_execute_builtin(t_main *main, t_tok *tok)
 {
-	t_tok	*tok;
+	int		is_builtin;
 
+	is_builtin = 1;
 	tok = main->tok_head;
 	if (strcmp(tok->str, "echo") == 0)
 		f_echo(main);
@@ -32,5 +33,6 @@ void	f_execute_builtin(t_main *main)
 	else if (strcmp(tok->str, "export") == 0)
 		f_export(main);
 	else
-		printf("Command not found: %s\n", tok->str);
+		is_builtin = 0;
+	return (is_builtin);
 }
