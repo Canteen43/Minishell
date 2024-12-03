@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 11:06:43 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/03 11:06:36 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_pipex
 // Function declarations
 // core
 void						f_handle_signals(void);
-void						f_execute_builtin(t_main *main);
+int							f_execute_builtin(t_main *main, t_tok *tok);
 void						f_signal_setup(int type);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
