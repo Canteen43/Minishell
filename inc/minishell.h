@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/03 11:06:36 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/03 11:36:51 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_pipex
 {
 	int						infile;
 	int						outfile;
+	int						fd[2];
 	char *const *envp;
 	char					**paths;
 
@@ -114,7 +115,6 @@ typedef struct s_pipex
 
 // Function declarations
 // core
-void						f_handle_signals(void);
 int							f_execute_builtin(t_main *main, t_tok *tok);
 void						f_signal_setup(int type);
 void						init(t_main *main, char *env[]);

@@ -20,7 +20,6 @@ SRC_DIR			:= src/
 # Source files
 SRC_FILES		+= main.c
 
-SRC_FILES		+= core/f_handle_signal.c
 SRC_FILES		+= core/f_signal_setup.c
 SRC_FILES		+= core/f_init.c
 SRC_FILES		+= core/f_gc_malloc.c
