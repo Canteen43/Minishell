@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:55 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/03 11:37:41 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/03 11:44:07 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	f_final_execute(t_main *main, t_pipex *pipex, t_tok *tok)
 	}
 	else if (pid == 0)
 	{
-		//TODO: close the read end of the pipe
-		// close(pipex->fd[0]);
+		close(pipex->fd[0]);
 		dup2(pipex->outfile, STDOUT_FILENO);
 		f_do_execute(main, pipex, tok);
 	}
