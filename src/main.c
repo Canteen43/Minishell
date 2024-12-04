@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 15:52:32 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:13:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char *argv[], char *env[])
 		if (main.user_input && *main.user_input)
 			add_history(main.user_input);
 		f_tokenize(&main);
-		// f_execution(&main);
+		f_execution(&main);
 		main.user_input = readline(PROMPT);
 	}
 	printf("Minishell closed because readline() received EOF, i.e. Ctrl-D\n");
