@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/03 11:36:51 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/04 10:26:30 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_pipex
 	int						fd[2];
 	char *const *envp;
 	char					**paths;
+	int						stdfd[2];
 
 }							t_pipex;
 
@@ -170,6 +171,8 @@ void						f_strncpy(char *dest, char *src, size_t n);
 void						f_strcpy(char *dest, char *src);
 bool						f_is_alpha(char c);
 bool						f_is_dig(char c);
+char						*f_itoa(t_main *main, int n);
+
 // token
 int							f_get_token_end(char *str, int start);
 void						f_tokenize(t_main *main);
@@ -197,8 +200,6 @@ void						f_add_arg_to_tok(t_main *main, char *arg,
 void						f_toks_to_cmds_n_args(t_main *main);
 void						f_expand_variables(t_main *main);
 char						*f_var_end(char *str);
-char						*f_var_find_key(t_main *main, char *start,
-								char *end);
 char						*f_var_new_string(t_main *main, char *oldstr,
 								char *valstr, char *end);
 void						f_resolve_quotes(t_main *main);
