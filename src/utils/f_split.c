@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_split.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:11:19 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 19:05:34 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/04 19:20:27 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**f_split(t_main *main, char const *s, char c)
 	sub_cnt = 0;
 	while (index_substr(s, sub_cnt, c))
 		sub_cnt++;
-	ptr = f_gc_malloc(main, sub_cnt + 1 * sizeof(void *));
+	ptr = f_gc_malloc(main, (sub_cnt + 1) * sizeof(void *));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
