@@ -69,6 +69,7 @@ SRC_FILES		 += token/f_add_arg_to_tok.c
 SRC_FILES		 += token/f_tok_is_redir.c
 SRC_FILES		 += token/f_add_redirs_to_cmds.c
 SRC_FILES		 += token/f_delete_pipes.c
+SRC_FILES		 += token/f_contains_heredoc.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
@@ -121,7 +122,9 @@ MKDIR			:= /bin/mkdir -p
 TOUCH			:= /bin/touch
 
 #### DEBUG SETTINGS ####
-ifeq ($(DEBUG), 1)
+# ifeq ($(DEBUG), 1)
+# Uncomment above line and delete below to disable automatic debug settings
+ifeq (1, 1)
 	CFLAGS		+= -g3 -O0
 endif
 
