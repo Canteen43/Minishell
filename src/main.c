@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 11:07:01 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:13:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[], char *env[])
 		f_execution(&main);
 		main.user_input = readline(PROMPT);
 	}
-	printf("Minishell closed because readline() received EOF\n");
+	printf("Minishell closed because readline() received EOF, i.e. Ctrl-D\n");
 	f_gc_clean(&main);
 	return (0);
 }

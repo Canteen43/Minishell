@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 10:16:36 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:13:20 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ void	f_tokenize(t_main *main)
 	f_join_tokens(main);
 	f_delete_white_toks(main);
 	f_toks_to_cmds_n_args(main);
+	f_add_redirs_to_cmds(main);
+	f_delete_pipes(main);
 }

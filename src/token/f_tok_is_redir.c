@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tok_last.c                                       :+:      :+:    :+:   */
+/*   f_tok_is_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 07:44:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 15:28:34 by kweihman         ###   ########.fr       */
+/*   Created: 2024/12/04 12:59:18 by kweihman          #+#    #+#             */
+/*   Updated: 2024/12/04 13:38:53 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tok	*f_tok_last(t_tok *tok)
+/*Returns true if tok->type is a redirection (incl. heredoc)*/
+bool	f_tok_is_redir(t_tok *tok)
 {
-	if (tok == NULL)
-		return (NULL);
-	while (tok->next != NULL)
-		tok = tok->next;
-	return (tok);
+	if (!tok)
+		return (false);
+	if (tok->type == REDIR_IN
+		|| tok->type == REDIR_HEREDOC
+		|| tok->type == REDIR_OUT
+		|| tok->type == REDIR_OUT_APP)
+		return (true);
+	return (false);
 }

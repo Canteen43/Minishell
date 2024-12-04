@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:58:17 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 12:16:28 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:29:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	nbr_digs(int n);
 static void	fill_array(char *ptr, int n);
 
-char	*ft_itoa(t_main *main, int n)
+char	*f_itoa(t_main *main, int n)
 {
 	int		digs;
 	size_t	size;

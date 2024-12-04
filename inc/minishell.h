@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/03 11:36:51 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:49:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ typedef enum e_token_type
 	WORD,
 	SQUOTE,
 	DQUOTE,
-	OPERATOR,
 	COMMAND,
+	PIPE,
+	REDIR_OUT,
+	REDIR_OUT_APP,
+	REDIR_IN,
+	REDIR_HEREDOC,
 }							t_type;
 
 // Token struct
@@ -89,6 +93,7 @@ typedef struct s_token
 	t_type					type;
 	char					*str;
 	char					**args;
+	struct s_token			*redir_head;
 }							t_tok;
 
 // Main struct
@@ -100,6 +105,8 @@ typedef struct s_main
 	t_tok					*tok_head;
 	int						exit_status;
 	t_gnode					*gc_head;
+	int						stdin_copy;
+	int						stdout_copy;
 }							t_main;
 
 // Pipex struct
@@ -108,7 +115,7 @@ typedef struct s_pipex
 	int						infile;
 	int						outfile;
 	int						fd[2];
-	char *const *envp;
+	char					**envp;
 	char					**paths;
 
 }							t_pipex;
@@ -170,11 +177,13 @@ void						f_strncpy(char *dest, char *src, size_t n);
 void						f_strcpy(char *dest, char *src);
 bool						f_is_alpha(char c);
 bool						f_is_dig(char c);
+char						*f_itoa(t_main *main, int n);
+
 // token
 int							f_get_token_end(char *str, int start);
 void						f_tokenize(t_main *main);
 int							f_tok_add_back(t_main *main, char *str);
-t_tok						*f_tok_last(t_tok *head);
+t_tok						*f_tok_last(t_tok *tok);
 t_tok						*f_tok_new(t_main *main, char *str);
 void						f_print_tokens(t_main *main);
 void						f_create_tokens(t_main *main);
@@ -207,6 +216,9 @@ void						f_delete_white_toks(t_main *main);
 void						f_add_arg_to_tok(t_main *main, char *arg,
 								t_tok *tok);
 void						f_toks_to_cmds_n_args(t_main *main);
+bool						f_tok_is_redir(t_tok *tok);
+void						f_add_redirs_to_cmds(t_main *main);
+void						f_delete_pipes(t_main *main);
 
 // execution
 void						f_exit_clean(t_pipex *pipex, int ecode);

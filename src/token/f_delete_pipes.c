@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_tok_last.c                                       :+:      :+:    :+:   */
+/*   f_delete_pipes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 07:44:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 15:28:34 by kweihman         ###   ########.fr       */
+/*   Created: 2024/12/04 17:46:33 by kweihman          #+#    #+#             */
+/*   Updated: 2024/12/04 17:49:10 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tok	*f_tok_last(t_tok *tok)
+void	f_delete_pipes(t_main *main)
 {
-	if (tok == NULL)
-		return (NULL);
-	while (tok->next != NULL)
+	t_tok	*tok;
+	t_tok	*tmp;
+
+	tok = main->tok_head;
+	while (tok)
+	{
+		tmp = tok;
 		tok = tok->next;
-	return (tok);
+		if (tmp->type == PIPE)
+			f_tok_remove_one_universal(main, tmp);
+	}
 }

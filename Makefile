@@ -66,6 +66,9 @@ SRC_FILES		 += token/f_join_tokens.c
 SRC_FILES		 += token/f_delete_white_toks.c
 SRC_FILES		 += token/f_toks_to_cmds_n_args.c
 SRC_FILES		 += token/f_add_arg_to_tok.c
+SRC_FILES		 += token/f_tok_is_redir.c
+SRC_FILES		 += token/f_add_redirs_to_cmds.c
+SRC_FILES		 += token/f_delete_pipes.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
@@ -74,6 +77,7 @@ SRC_FILES		+= utils/f_strjoin.c
 SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
 SRC_FILES		+= utils/f_split.c
+SRC_FILES		+= utils/f_itoa.c
 
 SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
 SRC_FILES		+= utils/get_next_line/get_next_line.c
