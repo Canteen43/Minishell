@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/03 12:29:44 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:39:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ typedef enum e_token_type
 	WORD,
 	SQUOTE,
 	DQUOTE,
-	OPERATOR,
 	COMMAND,
+	PIPE,
+	REDIR_OUT,
+	REDIR_OUT_APP,
+	REDIR_IN,
+	REDIR_HEREDOC,
 }							t_type;
 
 // Token struct
@@ -211,6 +215,7 @@ void						f_delete_white_toks(t_main *main);
 void						f_add_arg_to_tok(t_main *main, char *arg,
 								t_tok *tok);
 void						f_toks_to_cmds_n_args(t_main *main);
+bool						f_tok_is_redir(t_tok *tok);
 
 // execution
 void						f_exit_clean(t_pipex *pipex, int ecode);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_toks_to_cmds_n_args.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:11:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 16:46:41 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/04 13:40:55 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	f_toks_to_cmds_n_args(t_main *main)
 	cmd_set = false;
 	while (tok)
 	{
-		if (tok->type == OPERATOR && f_strcmp(tok->str, "|") == 0)
+		if (tok->type == PIPE)
 			cmd_set = false;
 		else if (tok->type == WORD)
 			sf_handle_word(main, tok, &cmd_set);
@@ -39,8 +39,7 @@ static void	sf_handle_word(t_main *main, t_tok *tok, bool *cmd_set)
 	t_tok	*target;
 
 	target = NULL;
-	if (tok->prev && tok->prev->type == OPERATOR
-		&& f_strcmp(tok->prev->str, "|") != 0 && tok->prev->args == NULL)
+	if (tok->prev && f_tok_is_redir(tok->prev) && tok->prev->args == NULL)
 		target = tok->prev;
 	else if (*cmd_set == false)
 	{
