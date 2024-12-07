@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_final_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:55 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/03 12:44:11 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:00:20 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	f_final_execute(t_main *main, t_pipex *pipex, t_tok *tok)
 	pid_t	pid;
 
 	pid = fork();
+	if (tok->redir_head)
+		f_set_redirects(pipex, main, tok);
 	if (pid == -1)
 	{
 		perror("fork failed");

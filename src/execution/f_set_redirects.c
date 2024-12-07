@@ -3,43 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   f_set_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:01:04 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/02 11:29:23 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:10:28 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* TODO: This version only checks the string of the current token without
-checking the type. However, ">" could also just be a word and not an operator*/
+/*Sets up pipex->infile and pipex->outfile by iterating through the redirect list
+of a given CMD token*/
 
-/*Sets up pipex->infile and pipex->outfile by iterating through the whole 
-token list*/
-void	f_set_redirects(t_pipex *pipex, t_main *main)
+void	f_set_redirects(t_pipex *pipex, t_main *main, t_tok *tok)
 {
-	t_tok	*tok;
-	t_tok	*next_tok;
-
-	tok = main->tok_head;
+	tok = tok->redir_head;
+	(void)main;
 	while (tok)
 	{
-		if (f_strcmp(tok->str, ">") == 0)
+		if (tok->type == REDIR_IN)
 		{
-			pipex->outfile = f_open_file(pipex, tok->args[0], 2);
-			next_tok = tok->next;
-			f_tok_remove_one_universal(main, tok);
-			tok = next_tok;
-		}
-		else if (f_strcmp(tok->str, "<") == 0)
-		{
+			if (pipex->infile > 0)
+				close(pipex->infile);
 			pipex->infile = f_open_file(pipex, tok->args[0], 1);
-			next_tok = tok->next;
-			f_tok_remove_one_universal(main, tok);
-			tok = next_tok;
 		}
-		else
-			tok = tok->next;
+		else if (tok->type == REDIR_OUT)
+		{
+			if (pipex->outfile != 0)
+				close(pipex->outfile);
+			pipex->outfile = f_open_file(pipex, tok->args[0], 2);
+		}
+		else if (tok->type == REDIR_OUT_APP)
+		{
+			if (pipex->outfile != 0)
+				close(pipex->outfile);
+			pipex->outfile = f_open_file(pipex, tok->args[0], 0);
+		}
+		// else if (tok->type == REDIR_HEREDOC)
+		// {
+		// 	f_here_doc(pipex, tok->args[0], main->current_cmd.argc);
+		// }
+		tok = tok->next;
 	}
+	if (pipex->infile)
+		dup2(pipex->infile, STDIN_FILENO);
+	if (pipex->outfile)
+		dup2(pipex->outfile, STDOUT_FILENO);
 }

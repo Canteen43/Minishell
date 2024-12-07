@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tok_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 20:45:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:29:57 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 12:42:29 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_tok	*f_tok_new(t_main *main, char *str)
 	new->prev = NULL;
 	new->next = NULL;
 	new->args = NULL;
+	new->redir_head = NULL;
 	return (new);
 }
