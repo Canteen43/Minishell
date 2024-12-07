@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 11:45:19 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/07 13:29:41 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/07 16:30:10 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	f_init_pipex(t_pipex *pipex, t_main *main)
 		c_env = c_env->next;
 	pipex->paths = f_split(main, c_env->value, ':');
 	pipex->envp = f_env_create_2da(main);
-	pipex->infile = 0;
-	pipex->outfile = 0;
+	pipex->infile = -1;
+	pipex->outfile = -1;
 }

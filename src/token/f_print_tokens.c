@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_print_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 18:02:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 15:16:59 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,20 @@ static void	sf_print_redirs(t_tok *redir_head);
 void	f_print_tokens(t_main *main)
 {
 	t_tok	*current;
+	int		i;
 	char	*type;
 
 	printf("Printing token list...\n");
 	current = main->tok_head;
 	while (current)
 	{
+		i = 0;
 		printf("==========\n");
 		type = sf_type_as_str(current->type);
 		printf("Type: %s\n", type);
 		printf("String: \"%s\"\n", current->str);
-		while (current->args && *(current->args))
-			printf("Arg: \"%s\"\n", *(current->args)++);
+		while (current->args && current->args[i])
+			printf("Arg: \"%s\"\n", current->args[i++]);
 		sf_print_redirs(current->redir_head);
 		printf("==========\n");
 		current = current->next;
@@ -42,6 +44,7 @@ static void	sf_print_redirs(t_tok *redir_head)
 {
 	t_tok	*current;
 	char	*type;
+	int		i;
 
 	current = redir_head;
 	if (!current)
@@ -52,12 +55,13 @@ static void	sf_print_redirs(t_tok *redir_head)
 	printf("Redirections:\n");
 	while (current)
 	{
+		i = 0;
 		printf("\t----------\n");
 		type = sf_type_as_str(current->type);
 		printf("\tType: %s\n", type);
 		printf("\tString: \"%s\"\n", current->str);
-		while (current->args && *(current->args))
-			printf("\tArg: \"%s\"\n", *(current->args)++);
+		while (current->args && current->args[i])
+			printf("\tArg: \"%s\"\n", current->args[i++]);
 		current = current->next;
 		printf("\t----------\n");
 	}
