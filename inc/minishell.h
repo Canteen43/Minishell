@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 18:34:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:29:47 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,8 @@ int							f_open_file(t_pipex *pipex, char *filename, int i);
 void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
 void						f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
-void						f_set_redirects(t_pipex *pipex, t_main *main);
+void						f_set_redirects(t_pipex *pipex, t_main *main,
+								t_tok *tok);
 void						f_do_execute(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_execution(t_main *main);

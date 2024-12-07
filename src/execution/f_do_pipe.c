@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/03 11:44:13 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/06 18:25:33 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
 {
 	pid_t	pid;
 
+	f_set_redirects(pipex, main, tok);
 	if (pipe(pipex->fd) < 0)
 		f_exit_clean(pipex, 1);
 	pid = fork();
@@ -34,5 +35,6 @@ void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
 	{
 		close(pipex->fd[1]);
 		dup2(pipex->fd[0], STDIN_FILENO);
+		
 	}
 }
