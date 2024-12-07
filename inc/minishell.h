@@ -36,6 +36,7 @@
 //  rl_replace_line(), rl_redisplay()
 # include <errno.h> // For perror(), strerror()
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
+# include <limits.h> // For INT_MAX and INT_MIN
 
 // Macros
 # define PROMPT "minishell$ "
@@ -157,6 +158,7 @@ void						f_env_del_list(t_env *head);
 void						f_env_del_2da(char **env);
 t_env						*f_env_last(t_env *head);
 int							f_env_lstlen(t_env *head);
+void						f_increase_shlvl(t_main *main);
 
 // utils
 void						*f_memcpy(void *dest, const void *src, size_t n);
@@ -178,6 +180,7 @@ void						f_strcpy(char *dest, char *src);
 bool						f_is_alpha(char c);
 bool						f_is_dig(char c);
 char						*f_itoa(t_main *main, int n);
+int							f_atoi_mod(char *str, int *num);
 
 // token
 int							f_get_token_end(char *str, int start);
