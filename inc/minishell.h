@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 09:52:54 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:09:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 //  rl_replace_line(), rl_redisplay()
 # include <errno.h> // For perror(), strerror()
 // # include <sys/ttycom.h>    // For isatty(), ttyname(), ttyslot()
+# include <limits.h> // For INT_MAX and INT_MIN
 
 // Macros
 # define PROMPT "minishell$ "
@@ -157,6 +158,7 @@ void						f_env_del_list(t_env *head);
 void						f_env_del_2da(char **env);
 t_env						*f_env_last(t_env *head);
 int							f_env_lstlen(t_env *head);
+void						f_increase_shlvl(t_main *main);
 
 // utils
 void						*f_memcpy(void *dest, const void *src, size_t n);

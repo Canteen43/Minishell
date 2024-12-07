@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:10:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 09:56:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 10:08:21 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	init(t_main *main, char *env[])
 	main->stdin_copy = dup(STDIN_FILENO);
 	main->stdout_copy = dup(STDOUT_FILENO);
 	f_env_create_lnklst(main, env);
-	f_env_increase_shlvl(main);
+	f_increase_shlvl(main);
 }
