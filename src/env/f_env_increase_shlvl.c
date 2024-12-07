@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_init.c                                           :+:      :+:    :+:   */
+/*   f_env_increase_shlvl.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 12:10:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 09:56:04 by kweihman         ###   ########.fr       */
+/*   Created: 2024/12/07 09:35:54 by kweihman          #+#    #+#             */
+/*   Updated: 2024/12/07 09:55:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Initializer function*/
-void	init(t_main *main, char *env[])
+void	f_increase_shlvl(t_main *main)
 {
-	f_signal_setup(SIGMODE_INTERACTIVE);
-	main->gc_head = NULL;
-	main->env_head = NULL;
-	main->exit_status = 0;
-	main->env_head = NULL;
-	main->stdin_copy = dup(STDIN_FILENO);
-	main->stdout_copy = dup(STDOUT_FILENO);
-	f_env_create_lnklst(main, env);
-	f_env_increase_shlvl(main);
+	t_env	*node;
+	int		cur_shlvl;
+
+	node = f_env_find_key(main->env_head, "SHLVL");
+	if (!node)
+		return ;
+	if (f_atoi_mod(node->value, &cur_shlvl) == -1)
+		return ;
+	node->value = f_itoa(main, cur_shlvl + 1);
 }

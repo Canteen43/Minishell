@@ -102,6 +102,7 @@ SRC_FILES		+= utils/f_strncpy.c
 SRC_FILES		+= utils/f_strcpy.c
 SRC_FILES		+= utils/f_is_alpha.c
 SRC_FILES		+= utils/f_is_dig.c
+SRC_FILES		+= utils/f_atoi_mod.c
 
 
 # Object files directory

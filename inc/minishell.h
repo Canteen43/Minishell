@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 18:34:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 09:52:54 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void						f_strcpy(char *dest, char *src);
 bool						f_is_alpha(char c);
 bool						f_is_dig(char c);
 char						*f_itoa(t_main *main, int n);
+int							f_atoi_mod(char *str, int *num);
 
 // token
 int							f_get_token_end(char *str, int start);
