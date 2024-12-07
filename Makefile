@@ -44,6 +44,7 @@ SRC_FILES		+= env/f_env_lstlen.c
 SRC_FILES		+= env/f_env_new.c
 SRC_FILES		+= env/f_env_strtokey.c
 SRC_FILES		+= env/f_env_strtovalue.c
+SRC_FILES		+= env/f_increase_shlvl.c
 
 SRC_FILES		 += token/f_get_token_end.c
 SRC_FILES		 += token/f_tokenize.c
@@ -102,6 +103,7 @@ SRC_FILES		+= utils/f_strncpy.c
 SRC_FILES		+= utils/f_strcpy.c
 SRC_FILES		+= utils/f_is_alpha.c
 SRC_FILES		+= utils/f_is_dig.c
+SRC_FILES		+= utils/f_atoi_mod.c
 
 
 # Object files directory
