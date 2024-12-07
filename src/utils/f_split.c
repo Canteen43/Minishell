@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_split.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:11:19 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 19:20:27 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/07 12:30:05 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Returns pointer to substring with index. Returns NULL if there is no
 substring with index. Can also be used to count number of substrings.*/
-static	const char	*index_substr(const char *str, int index, char dlm)
+static const char	*index_substr(const char *str, int index, char dlm)
 {
 	int	char_sctn;
 
@@ -36,9 +36,9 @@ static	const char	*index_substr(const char *str, int index, char dlm)
 	return (str);
 }
 
-/* Counts length of substring. Str is set to first char of substring with 
+/* Counts length of substring. Str is set to first char of substring with
 index i. Then bytes are counted until delimiter or Null is found.*/
-static	int	substr_len(char const *str, char dlm, int i)
+static int	substr_len(char const *str, char dlm, int i)
 {
 	int	cnt;
 
@@ -54,7 +54,7 @@ static	int	substr_len(char const *str, char dlm, int i)
 
 /* Copies from str to sub. Str is set to location of first char of substring of
  index i. Then str is written to sub until dlm or null is found.*/
-static	void	substr_cpy(char const *str, char dlm, int i, char *sub)
+static void	substr_cpy(char const *str, char dlm, int i, char *sub)
 {
 	str = index_substr(str, i, dlm);
 	while (*str != dlm && *str)
@@ -99,7 +99,7 @@ char	**f_split(t_main *main, char const *s, char c)
 	i = 0;
 	while (i < sub_cnt)
 	{
-		ptr[i] = f_gc_malloc(main, substr_len(s, c, i) + 1 * sizeof(char));
+		ptr[i] = f_gc_malloc(main, (substr_len(s, c, i) + 1) * sizeof(char));
 		if (ptr[i] == NULL)
 		{
 			f_gc_clean(main);
