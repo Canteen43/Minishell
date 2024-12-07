@@ -94,7 +94,7 @@ SRC_FILES		+= execution/f_init_pipex.c
 SRC_FILES		+= execution/f_open_file.c
 SRC_FILES		+= execution/f_set_redirects.c
 SRC_FILES		+= execution/f_execute_builtin.c
-SRC_FILES		+= execution/f_final_execute.c
+SRC_FILES		+= execution/f_handle_final_command.c
 SRC_FILES		+= execution/f_find_final_cmd.c
 
 SRC_FILES		+= utils/f_strdup.c
