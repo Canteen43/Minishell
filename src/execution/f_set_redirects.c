@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:01:04 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/08 17:44:09 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 18:03:08 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	f_set_redirects(t_pipex *pipex, t_main *main, t_tok *tok)
 		}
 		// else if (tok->type == REDIR_HEREDOC)
 		// {
-		// 	pipex->heredoc = 1;
-		// 	f_here_doc(pipex, tok->args[0]);
+		// 	if(pipex->infile>=0)
+		// 		close(pipex->infile);
+		// 	pipex->infile = tok->fd;
 		// }
 		tok = tok->next;
 	}
