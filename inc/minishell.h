@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 14:42:08 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 17:42:54 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ void						f_exit_clean(t_pipex *pipex, int ecode);
 char						*f_get_cmd_path(t_main *main, char **paths,
 								char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
-void						f_here_doc(t_pipex *pipex, char *limiter, int argc);
+void						f_here_doc(t_pipex *pipex, char *limiter);
 void						f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
 void						f_set_redirects(t_pipex *pipex, t_main *main,
