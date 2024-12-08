@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 11:45:19 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/07 16:30:10 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 13:11:33 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	f_init_pipex(t_pipex *pipex, t_main *main)
 	pipex->envp = f_env_create_2da(main);
 	pipex->infile = -1;
 	pipex->outfile = -1;
+	pipex->heredoc = 0;
 }

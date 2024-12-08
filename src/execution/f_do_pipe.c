@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/07 17:07:46 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 13:42:44 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
 
 static void	sf_execute_child(t_main *main, t_pipex *pipex, t_tok *tok)
 {
+	dup2(pipex->fd[1], STDOUT_FILENO);
 	if (tok->redir_head)
 		f_set_redirects(pipex, main, tok);
-	if (pipex->infile != -1)
+	if (pipex->infile != -1 && pipex->heredoc == 0)
 	{
 		dup2(pipex->infile, STDIN_FILENO);
 		close(pipex->infile);
@@ -46,11 +47,6 @@ static void	sf_execute_child(t_main *main, t_pipex *pipex, t_tok *tok)
 	{
 		dup2(pipex->outfile, STDOUT_FILENO);
 		close(pipex->outfile);
-	}
-	else
-	{
-		dup2(pipex->fd[1], STDOUT_FILENO);
-		close(pipex->fd[1]);
 	}
 	close(pipex->fd[0]);
 	f_do_execute(main, pipex, tok);

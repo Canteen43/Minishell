@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 18:42:24 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/08 12:37:25 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ int	f_tokenize(t_main *main)
 	}
 	f_unite_double_ops(main);
 	f_add_categories(main);
-	if (f_contains_heredoc(main))
-	{
-		printf("Not executed because of heredoc\n");
-		return (1);
-	}
 	f_expand_variables(main);
 	f_resolve_quotes(main);
 	f_join_tokens(main);
