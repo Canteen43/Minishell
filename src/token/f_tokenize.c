@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/08 12:37:25 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 18:07:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ there were no syntax errors. Returns 1 if input cannot be executed.*/
 int	f_tokenize(t_main *main)
 {
 	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
-	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
-		return (1);
-	}
 	f_unite_double_ops(main);
 	f_add_categories(main);
+	if (f_tok_check_syntax(main))
+		return (1);
 	f_expand_variables(main);
 	f_resolve_quotes(main);
 	f_join_tokens(main);

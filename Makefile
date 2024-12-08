@@ -71,6 +71,7 @@ SRC_FILES		 += token/f_tok_is_redir.c
 SRC_FILES		 += token/f_add_redirs_to_cmds.c
 SRC_FILES		 += token/f_delete_pipes.c
 SRC_FILES		 += token/f_contains_heredoc.c
+SRC_FILES		 += token/f_is_operator.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c
