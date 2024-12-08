@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 14:42:08 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 15:23:46 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ t_tok						*f_tok_last(t_tok *tok);
 t_tok						*f_tok_new(t_main *main, char *str);
 void						f_print_tokens(t_main *main);
 void						f_create_tokens(t_main *main);
-t_tok						*f_tok_check_syntax(t_main *main);
+int							f_tok_check_syntax(t_main *main);
 void						f_tok_remove_one(t_tok *tok);
 void						f_tok_remove_one(t_tok *tok);
 void						f_unite_double_ops(t_main *main);
@@ -220,6 +220,7 @@ void						f_add_arg_to_tok(t_main *main, char *arg,
 								t_tok *tok);
 void						f_toks_to_cmds_n_args(t_main *main);
 bool						f_tok_is_redir(t_tok *tok);
+bool						f_is_operator(t_tok *tok);
 void						f_add_redirs_to_cmds(t_main *main);
 void						f_delete_pipes(t_main *main);
 bool						f_contains_heredoc(t_main *main);

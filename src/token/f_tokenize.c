@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 18:42:24 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/08 15:20:56 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ there were no syntax errors. Returns 1 if input cannot be executed.*/
 int	f_tokenize(t_main *main)
 {
 	f_create_tokens(main);
-	if (f_tok_check_syntax(main))
-	{
-		printf("Syntax error near unexpected token '%s'\n",
-			f_tok_check_syntax(main)->str);
-		return (1);
-	}
 	f_unite_double_ops(main);
 	f_add_categories(main);
+	if (f_tok_check_syntax(main))
+		return (1);
 	if (f_contains_heredoc(main))
 	{
 		printf("Not executed because of heredoc\n");
