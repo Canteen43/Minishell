@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/08 13:15:13 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 17:42:54 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ typedef struct s_pipex
 	int						fd[2];
 	char					**envp;
 	char					**paths;
-	int						heredoc;
-	int 					heredoc_fd;
 
 }							t_pipex;
 

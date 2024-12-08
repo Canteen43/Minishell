@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:00:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/08 13:30:29 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 17:44:29 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	f_here_doc(t_pipex *pipex, char *limiter)
 		perror("fork failed");
 		f_exit_clean(pipex, 1);
 	}
-	pipex->heredoc_fd = fd[0];
 	pid = fork();
 	if (pid == 0)
 		f_read_here_doc(pipex, fd, limiter);
