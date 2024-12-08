@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:00:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/21 14:24:46 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 17:44:29 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ void	f_read_here_doc(t_pipex *pipex, int *fd, char *limiter)
 	}
 }
 
-void	f_here_doc(t_pipex *pipex, char *limiter, int argc)
+void	f_here_doc(t_pipex *pipex, char *limiter)
 {
 	pid_t	pid;
+	int		wstatus;
 	int		fd[2];
 
-	if (argc < 6)
-		f_exit_clean(pipex, 1);
 	if (pipe(fd) == 1)
 	{
 		perror("fork failed");
@@ -58,6 +57,6 @@ void	f_here_doc(t_pipex *pipex, char *limiter, int argc)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		wait(NULL);
+		waitpid(pid, &wstatus, 0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:04:07 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/07 17:28:31 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/08 13:04:55 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	f_execution(t_main *main)
 	
 	f_init_pipex(&pipex, main);
 	tok = main->tok_head;
+	f_print_tokens(main);
 	while (tok)
 	{
 		if (tok->next == NULL)

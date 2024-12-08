@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/08 15:20:56 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:07:28 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ int	f_tokenize(t_main *main)
 	f_add_categories(main);
 	if (f_tok_check_syntax(main))
 		return (1);
-	if (f_contains_heredoc(main))
-	{
-		printf("Not executed because of heredoc\n");
-		return (1);
-	}
 	f_expand_variables(main);
 	f_resolve_quotes(main);
 	f_join_tokens(main);
