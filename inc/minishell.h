@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/08 18:06:47 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:45:17 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void						f_tok_remove_one(t_tok *tok);
 void						f_tok_remove_one(t_tok *tok);
 void						f_unite_double_ops(t_main *main);
 void						f_add_categories(t_main *main);
-void						f_expand_variables(t_main *main);
+void						f_do_expansions_for_toks(t_main *main);
 char						*f_var_end(char *str);
 char						*f_var_find_key(t_main *main, char *start,
 								char *end);
@@ -207,7 +207,7 @@ void						f_delete_white_toks(t_main *main);
 void						f_add_arg_to_tok(t_main *main, char *arg,
 								t_tok *tok);
 void						f_toks_to_cmds_n_args(t_main *main);
-void						f_expand_variables(t_main *main);
+void						f_do_expansions_for_toks(t_main *main);
 char						*f_var_end(char *str);
 char						*f_var_find_key(t_main *main, char *start,
 								char *end);
@@ -224,6 +224,8 @@ bool						f_is_operator(t_tok *tok);
 void						f_add_redirs_to_cmds(t_main *main);
 void						f_delete_pipes(t_main *main);
 bool						f_contains_heredoc(t_main *main);
+void						f_do_expansions_in_str(t_main *main, char **p_str);
+char						*f_expandable_dollar_sign(char *str);
 
 // execution
 void						f_exit_clean(t_pipex *pipex, int ecode);
