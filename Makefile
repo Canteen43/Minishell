@@ -32,6 +32,7 @@ SRC_FILES		+= builtins/f_env.c
 SRC_FILES		+= builtins/f_cd.c
 SRC_FILES		+= builtins/f_unset.c
 SRC_FILES		+= builtins/f_export.c
+SRC_FILES		+= builtins/f_exit.c
 
 SRC_FILES		+= env/f_env_add_back.c
 SRC_FILES		+= env/f_env_create_2da.c
@@ -83,6 +84,15 @@ SRC_FILES		+= utils/f_strlen.c
 SRC_FILES		+= utils/f_strncmp.c
 SRC_FILES		+= utils/f_split.c
 SRC_FILES		+= utils/f_itoa.c
+SRC_FILES		+= utils/f_strdup.c
+SRC_FILES		+= utils/f_strscmp.c
+SRC_FILES		+= utils/f_strncpy.c
+SRC_FILES		+= utils/f_strcpy.c
+SRC_FILES		+= utils/f_is_alpha.c
+SRC_FILES		+= utils/f_is_dig.c
+SRC_FILES		+= utils/f_atoi.c
+SRC_FILES		+= utils/f_atoi_mod.c
+SRC_FILES		+= utils/f_array_length.c
 
 SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
 SRC_FILES		+= utils/get_next_line/get_next_line.c
@@ -96,18 +106,11 @@ SRC_FILES		+= execution/f_heredoc.c
 SRC_FILES		+= execution/f_init_pipex.c
 SRC_FILES		+= execution/f_open_file.c
 SRC_FILES		+= execution/f_set_redirects.c
-SRC_FILES		+= execution/f_execute_builtin.c
-SRC_FILES		+= execution/f_handle_final_command.c
+SRC_FILES		+= execution/f_do_builtin.c
+SRC_FILES		+= execution/f_handle_final_cmd.c
+SRC_FILES		+= execution/f_handle_single_cmd.c
 SRC_FILES		+= execution/f_find_final_cmd.c
-
-SRC_FILES		+= utils/f_strdup.c
-SRC_FILES		+= utils/f_strscmp.c
-SRC_FILES		+= utils/f_strncpy.c
-SRC_FILES		+= utils/f_strcpy.c
-SRC_FILES		+= utils/f_is_alpha.c
-SRC_FILES		+= utils/f_is_dig.c
-SRC_FILES		+= utils/f_atoi_mod.c
-
+SRC_FILES		+= execution/f_do_child.c
 
 # Object files directory
 OBJ_DIR			:= obj/

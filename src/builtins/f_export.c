@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   f_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:36:08 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 13:44:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:05:57 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_export(t_main *main)
+void	f_export(t_main *main, t_tok *tok)
 {
 	char	*key;
 	char	*value;
 	char	**args;
 
-	args = main->tok_head->args + 1;
+	args = tok->args + 1;
 	if (!*args)
 	{
 		f_env(main);

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   f_unset.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:28:53 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/27 18:23:19 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:06:21 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_unset(t_main *main)
+void	f_unset(t_main *main, t_tok *tok)
 {
 	t_env	*node;
 	char	**args;
 
-	args = main->tok_head->args;
+	args = tok->args;
 	args++;
 	while (*args)
 	{
