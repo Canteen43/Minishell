@@ -6,13 +6,12 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/08 17:43:05 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:37:27 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	sf_execute_child(t_main *main, t_pipex *pipex, t_tok *tok);
 static void	sf_prep_next_command(t_pipex *pipex);
 
 void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
@@ -28,28 +27,9 @@ void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
 		f_exit_clean(pipex, 1);
 	}
 	else if (pid == 0)
-		sf_execute_child(main, pipex, tok);
+		f_do_child(main, pipex, tok);
 	else
 		sf_prep_next_command(pipex);
-}
-
-static void	sf_execute_child(t_main *main, t_pipex *pipex, t_tok *tok)
-{
-	dup2(pipex->fd[1], STDOUT_FILENO);
-	if (tok->redir_head)
-		f_set_redirects(pipex, main, tok);
-	if (pipex->infile != -1)
-	{
-		dup2(pipex->infile, STDIN_FILENO);
-		close(pipex->infile);
-	}
-	if (pipex->outfile != -1)
-	{
-		dup2(pipex->outfile, STDOUT_FILENO);
-		close(pipex->outfile);
-	}
-	close(pipex->fd[0]);
-	f_do_execute(main, pipex, tok);
 }
 
 static void	sf_prep_next_command(t_pipex *pipex)

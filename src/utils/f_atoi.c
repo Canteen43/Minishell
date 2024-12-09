@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_do_execute.c                                     :+:      :+:    :+:   */
+/*   f_atoi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 13:05:13 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 16:35:22 by glevin           ###   ########.fr       */
+/*   Created: 2024/12/09 15:43:19 by glevin            #+#    #+#             */
+/*   Updated: 2024/12/09 15:45:28 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f_do_execute(t_main *main, t_pipex *pipex, t_tok *tok)
+int	f_atoi(const char *str)
 {
-	char	*cmd;
+	int	i;
+	int	ans;
+	int	sign;
 
-	if (f_do_builtin(main, tok))
-		exit(0);
-	cmd = f_get_cmd_path(main, pipex->paths, tok->str);
-	if (!cmd)
+	i = 0;
+	ans = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		perror("Command not found");
-		f_exit_clean(pipex, 127);
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	if (execve(cmd, tok->args, (char **)pipex->envp) == -1)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		perror("execve failed");
-		free(cmd);
-		f_exit_clean(pipex, 127);
+		ans = ans * 10 + (str[i] - '0');
+		i++;
 	}
+	return (ans * sign);
 }

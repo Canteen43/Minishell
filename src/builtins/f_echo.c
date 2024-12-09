@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   f_echo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:19:20 by kweihman          #+#    #+#             */
-/*   Updated: 2024/11/25 09:29:23 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:15:26 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	f_echo(t_main *main)
+void	f_echo(t_tok *tok)
 {
 	char	**args;
 	int		i;
 	bool	n_flag;
 
 	n_flag = false;
-	args = main->tok_head->args;
+	args = tok->args;
 	i = 1;
 	if (args[1] && strcmp(args[1], "-n") == 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/09 10:45:17 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:35:22 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_pipex
 
 // Function declarations
 // core
-int							f_execute_builtin(t_main *main, t_tok *tok);
+int							f_do_builtin(t_main *main, t_tok *tok);
 void						f_signal_setup(int type);
 void						init(t_main *main, char *env[]);
 void						f_extract_cmd(t_main *main, char *command_line);
@@ -132,14 +132,15 @@ void						f_gc_clean(t_main *main);
 t_gnode						*f_gc_add_node(t_main *main, void *ptr);
 void						f_free_and_exit(t_main *main, char *message,
 								int code);
+void						f_exit(t_main *main, t_tok *tok);
 
 // builtins
-void						f_echo(t_main *main);
+void						f_echo(t_tok *tok);
 void						f_pwd(t_main *main);
 void						f_env(t_main *main);
-void						f_cd(t_main *main);
-void						f_unset(t_main *main);
-void						f_export(t_main *main);
+void						f_cd(t_main *main, t_tok *tok);
+void						f_unset(t_main *main, t_tok *tok);
+void						f_export(t_main *main, t_tok *tok);
 
 // env
 char						*f_env_strtovalue(t_main *main, char *str);
@@ -181,6 +182,8 @@ bool						f_is_alpha(char c);
 bool						f_is_dig(char c);
 char						*f_itoa(t_main *main, int n);
 int							f_atoi_mod(char *str, int *num);
+int							f_atoi(const char *str);
+int							f_array_length(char **arr);
 
 // token
 int							f_get_token_end(char *str, int start);
@@ -241,7 +244,14 @@ void						f_do_execute(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_execution(t_main *main);
 t_tok						*f_find_final_cmd(t_main *main);
-void						f_handle_final_command(t_main *main, t_pipex *pipex,
+void						f_handle_final_cmd(t_main *main, t_pipex *pipex,
+								t_tok *tok);
+void						f_handle_single_cmd(t_main *main, t_pipex *pipex,
+								t_tok *tok);
+void						f_handle_waits(t_main *main, pid_t pid);
+void						f_execute_child(t_main *main, t_pipex *pipex,
+								t_tok *tok);
+void						f_do_child(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 
 // get next line
