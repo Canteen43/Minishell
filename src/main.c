@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 19:33:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:44:18 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argc;
 	(void)argv;
 	init(&main, env);
-	main.user_input = readline(PROMPT);
-	while (main.user_input)
+	while (1)
 	{
+		main.user_input = readline(PROMPT);
+		if (!main.user_input)
+			break ;
 		if (f_gc_add_node(&main, main.user_input) == NULL)
 			f_free_and_exit(&main, MALLOCFAIL, 1);
-		if (main.user_input && *main.user_input)
-			add_history(main.user_input);
-		if (f_tokenize(&main) == 0)
-			f_execution(&main);
-		main.user_input = readline(PROMPT);
+		if (!*main.user_input)
+			continue ;
+		add_history(main.user_input);
+		if (f_tokenize(&main) == 1)
+			continue ;
+		f_execution(&main);
 	}
 	printf("Minishell closed because readline() received EOF, i.e. Ctrl-D\n");
 	f_gc_clean(&main);
