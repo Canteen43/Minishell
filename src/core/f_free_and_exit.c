@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:03:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 10:38:24 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:42:26 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	f_free_and_exit(t_main *main, char *message, int code)
 {
 	f_gc_clean(main);
 	if (message)
-		printf("%s, exiting minishell...", message);
+		printf("%s\n", message);
 	exit (code);
 }

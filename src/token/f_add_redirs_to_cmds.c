@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:01:25 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/04 15:44:36 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:07:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	sf_add_redir_to_cmd(t_main *main, t_tok *redir_tok, t_tok *cmd_tok)
 {
 	t_tok	*last_redir_tok;
 
-	f_tok_remove_one_universal(main, redir_tok);
+	f_tok_remove_one_universal(&main->tok_head, redir_tok);
 	last_redir_tok = f_tok_last(cmd_tok->redir_head);
 	if (!last_redir_tok)
 		cmd_tok->redir_head = redir_tok;

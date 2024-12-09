@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_handle_single_cmd.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:09:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 17:13:04 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/09 17:38:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	f_handle_single_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 	pid_t	pid;
 
 	if (f_do_builtin(main, tok))
-		exit(0);
+		return ;
 	pid = fork();
 	if (pid == -1)
 	{
