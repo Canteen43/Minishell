@@ -17,7 +17,6 @@ int	f_do_builtin(t_main *main, t_tok *tok)
 	int	is_builtin;
 
 	is_builtin = 1;
-	tok = main->tok_head;
 	if (strcmp(tok->str, "echo") == 0)
 		f_echo(tok);
 	else if (strcmp(tok->str, "pwd") == 0)

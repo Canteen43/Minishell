@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_open_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:13:20 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/07 17:48:18 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/10 12:38:06 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	f_open_file(t_pipex *pipex, char *filename, int i)
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		perror("\033[31mError");
+		perror("\033[31mError\033[0m");
 		f_exit_clean(pipex, 1);
 	}
 	return (fd);
