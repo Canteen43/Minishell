@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_execution.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:04:07 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 17:22:29 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:43:26 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	f_execution(t_main *main)
 			if (tok->next == NULL)
 				f_handle_final_cmd(main, &pipex, tok);
 			else if (tok->type == COMMAND)
-				f_do_pipe(main, &pipex, tok);
+				f_handle_cmd(main, &pipex, tok);
 			tok = tok->next;
 			pipex.infile = -1;
 			pipex.outfile = -1;

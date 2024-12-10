@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/09 17:42:42 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:44:02 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ char						*f_get_cmd_path(t_main *main, char **paths,
 								char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
 int							f_do_heredoc(t_main *main, t_tok *redir);
-void						f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok);
+void						f_handle_cmd(t_main *main, t_pipex *pipex, t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
 void						f_set_redirects(t_pipex *pipex, t_main *main,
 								t_tok *tok);
@@ -257,7 +257,7 @@ void						f_handle_waits(t_main *main, pid_t pid);
 void						f_execute_child(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_do_child(t_main *main, t_pipex *pipex,
-								t_tok *tok);
+								t_tok *tok, int is_final);
 int							f_resolve_heredocs(t_main *main);
 
 // get next line

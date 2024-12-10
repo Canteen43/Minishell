@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_handle_single_cmd.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:09:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 17:38:25 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:29:03 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	f_handle_single_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 		f_exit_clean(pipex, 1);
 	}
 	else if (pid == 0)
-		f_do_child(main, pipex, tok);
+		f_do_child(main, pipex, tok, 1);
 	sf_handle_wait(main, pid);
 }
 
