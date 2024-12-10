@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/09 16:35:22 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/09 17:42:42 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@
 
 // Macros
 # define PROMPT "minishell$ "
-# define MALLOCFAIL "malloc() failed"
-# define SIGFAIL "signal function failed"
+# define HEREDOC_PROMPT "> "
+
+# define MALLOCFAIL "malloc() failed, exiting minishell"
+# define SIGFAIL "signal function failed, exiting minishell"
+# define PIPEFAIL "pipe() failed, exiting minishell"
+# define FORKFAIL "fork() failed, exiting minishell"
 
 # define SIGMODE_INTERACTIVE 1
 # define SIGMODE_RESET 2
@@ -95,6 +99,7 @@ typedef struct s_token
 	char					*str;
 	char					**args;
 	struct s_token			*redir_head;
+	int						heredoc_fd;
 }							t_tok;
 
 // Main struct
@@ -150,7 +155,7 @@ char						*f_env_keyvaluetostr(t_main *main, t_env *node);
 char						*f_env_strtokey(t_main *main, char *str);
 t_env						*f_env_find_key(t_env *head, char *key);
 void						f_env_remove_one(t_main *main, t_env *node);
-void						f_tok_remove_one_universal(t_main *main,
+void						f_tok_remove_one_universal(t_tok **p_head,
 								t_tok *tok);
 t_env						*f_env_new(t_main *main, char *key, char *value);
 void						f_env_create_lnklst(t_main *main, char **env);
@@ -235,7 +240,7 @@ void						f_exit_clean(t_pipex *pipex, int ecode);
 char						*f_get_cmd_path(t_main *main, char **paths,
 								char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
-void						f_here_doc(t_pipex *pipex, char *limiter);
+int							f_do_heredoc(t_main *main, t_tok *redir);
 void						f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
 void						f_set_redirects(t_pipex *pipex, t_main *main,
@@ -253,6 +258,7 @@ void						f_execute_child(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_do_child(t_main *main, t_pipex *pipex,
 								t_tok *tok);
+int							f_resolve_heredocs(t_main *main);
 
 // get next line
 char						*get_next_line(int fd);

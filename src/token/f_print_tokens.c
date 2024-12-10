@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_print_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:50:39 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 15:16:59 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:38:34 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void	sf_print_redirs(t_tok *redir_head)
 		printf("\tString: \"%s\"\n", current->str);
 		while (current->args && current->args[i])
 			printf("\tArg: \"%s\"\n", current->args[i++]);
+		if (current->heredoc_fd != -1)
+			printf("\tHeredoc_fd: \"%d\"\n", current->heredoc_fd);
 		current = current->next;
 		printf("\t----------\n");
 	}
