@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_set_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:01:04 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 17:09:40 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:22:05 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	f_set_redirects(t_pipex *pipex, t_main *main, t_tok *tok)
 		{
 			if (pipex->infile >= 0)
 				close(pipex->infile);
-			// printf("%d", tok->heredoc_fd);
 			pipex->infile = tok->heredoc_fd;
 		}
 		tok = tok->next;

@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:31:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 16:36:09 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/10 11:45:36 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	f_do_child(t_main *main, t_pipex *pipex, t_tok *tok)
 	}
 	else
 		dup2(main->stdout_copy, STDOUT_FILENO);
-	close(pipex->fd[0]);
 	f_do_execute(main, pipex, tok);
+	close(pipex->fd[0]);
 }
