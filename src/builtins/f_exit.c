@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:55:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/10 10:45:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:52:22 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	f_exit(t_main *main, t_tok *tok)
 {
 	int	ecode;
 
-	write (STDERR_FILENO, "exit\n", 5);
 	if (!tok || tok->args[1] == NULL)
 		f_free_and_exit(main, NULL, main->exit_status);
 	if (!sf_is_acceptable(tok->args[1]))
