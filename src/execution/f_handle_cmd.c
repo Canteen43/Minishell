@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_do_pipe.c                                        :+:      :+:    :+:   */
+/*   f_handle_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 16:37:27 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:44:02 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	sf_prep_next_command(t_pipex *pipex);
 
-void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
+void	f_handle_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 {
 	pid_t	pid;
 
@@ -27,7 +27,7 @@ void	f_do_pipe(t_main *main, t_pipex *pipex, t_tok *tok)
 		f_exit_clean(pipex, 1);
 	}
 	else if (pid == 0)
-		f_do_child(main, pipex, tok);
+		f_do_child(main, pipex, tok, 0);
 	else
 		sf_prep_next_command(pipex);
 }
