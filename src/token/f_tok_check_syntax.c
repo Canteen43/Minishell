@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:55:50 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/08 15:30:11 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:50:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	f_tok_check_syntax(t_main *main)
 	t_tok	*tok;
 
 	tok = main->tok_head;
+	if (tok->next && tok->next->type == PIPE)
+		return (sf_write_error_and_return(tok->next->str));
 	while (tok)
 	{
 		if (sf_op_after_redir(tok))
