@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 16:35:02 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/11 17:13:17 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,6 @@ void						f_do_child(t_main *main, t_pipex *pipex, t_tok *tok,
 int							f_resolve_heredocs(t_main *main);
 
 // get next line
-char						*get_next_line(int fd);
 int							ft_istrchr(const char *str, int c);
 char						*ft_strdup(const char *string);
 char						*ft_substr(char const *s, unsigned int start,
