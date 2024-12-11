@@ -16,6 +16,8 @@ int	f_do_builtin(t_main *main, t_tok *tok)
 {
 	int	is_builtin;
 
+	if (tok->str == NULL)
+		return (0);
 	is_builtin = 1;
 	if (strcmp(tok->str, "echo") == 0)
 		f_echo(tok);
