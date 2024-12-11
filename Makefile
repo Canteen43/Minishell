@@ -70,6 +70,7 @@ SRC_FILES		 += token/f_add_arg_to_tok.c
 SRC_FILES		 += token/f_tok_is_redir.c
 SRC_FILES		 += token/f_add_redirs_to_cmds.c
 SRC_FILES		 += token/f_delete_pipes.c
+SRC_FILES		 += token/f_is_builtin.c
 SRC_FILES		 += token/f_contains_heredoc.c
 SRC_FILES		 += token/f_expandable_dollar_sign.c
 SRC_FILES		 += token/f_do_expansions_in_str.c

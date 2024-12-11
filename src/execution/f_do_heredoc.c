@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:00:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/09 17:15:47 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:06:37 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	f_do_heredoc(t_main *main, t_tok *redir)
 		sf_read_heredoc(main, fd, redir->args[0]);
 	close(fd[1]);
 	waitpid(pid, &wstatus, 0);
-	if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) != 0)
+	if (WIFEXITED(wstatus))
+		main->exit_status = WEXITSTATUS(wstatus);
+	if (main->exit_status != 0)
 		return (1);
 	redir->heredoc_fd = fd[0];
 	return (0);
@@ -48,7 +50,7 @@ static void	sf_read_heredoc(t_main *main, int *fd, char *limiter)
 		if (!line)
 		{
 			printf("minishell: warning: here-document delimited by end-of-file"
-				" (wanted `%s')",
+				" (wanted `%s')\n",
 				limiter);
 			break ;
 		}
@@ -62,5 +64,5 @@ static void	sf_read_heredoc(t_main *main, int *fd, char *limiter)
 	}
 	close(fd[1]);
 	f_gc_clean(main);
-	exit (0);
+	exit(0);
 }

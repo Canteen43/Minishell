@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   f_set_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:01:04 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/10 11:22:05 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/11 13:38:08 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Sets up pipex->infile and pipex->outfile by iterating through the redirect list
-of a given CMD token*/
-
+/*Sets up pipex->infile and pipex->outfile by iterating through the redirect
+list of a given CMD token.*/
 void	f_set_redirects(t_pipex *pipex, t_main *main, t_tok *tok)
 {
 	tok = tok->redir_head;
@@ -45,6 +44,8 @@ void	f_set_redirects(t_pipex *pipex, t_main *main, t_tok *tok)
 				close(pipex->infile);
 			pipex->infile = tok->heredoc_fd;
 		}
+		if (pipex->infile == -2 || pipex->outfile == -2)
+			return ;
 		tok = tok->next;
 	}
 }

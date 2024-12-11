@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:01:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/02 10:19:01 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:08:45 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ static void	sf_handle_sigint_heredoc(int signum)
 {
 	(void) signum;
 	write(STDOUT_FILENO, "\n", 1);
-	exit(1);
+	exit(130);
 }
