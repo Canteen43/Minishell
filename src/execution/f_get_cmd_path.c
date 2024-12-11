@@ -6,33 +6,30 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:14:15 by glevin            #+#    #+#             */
-/*   Updated: 2024/11/25 17:04:13 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/11 16:56:25 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*f_get_cmd_path(t_main *main, char **paths, char *in_cmd)
+char	*f_get_cmd_path(t_main *main, char **paths, char *cmd)
 {
 	int		i;
 	char	*cmd_path;
 	char	*tmp_path;
 
 	i = -1;
-	if (!paths || !in_cmd)
-	{
+	if (!paths || !cmd)
 		return (NULL);
-	}
-	if (access(in_cmd, X_OK | F_OK) == 0)
-		return (in_cmd);
+	if ((strncmp(cmd, "/", 1) == 0 || strncmp(cmd, "./", 2) == 0 || strncmp(cmd,
+				"../", 3) == 0 || cmd[0] == '/') && access(cmd, X_OK) == 0)
+		return (cmd);
 	while (paths[++i])
 	{
 		tmp_path = f_strjoin(main, paths[i], "/");
-		cmd_path = f_strjoin(main, tmp_path, in_cmd);
-		free(tmp_path);
-		if (access(cmd_path, X_OK | F_OK) == 0)
+		cmd_path = f_strjoin(main, tmp_path, cmd);
+		if (access(cmd_path, X_OK) == 0)
 			return (cmd_path);
-		free(cmd_path);
 	}
 	return (NULL);
 }

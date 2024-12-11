@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:11:19 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/07 12:30:05 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/11 16:48:34 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,6 @@ static void	substr_cpy(char const *str, char dlm, int i, char *sub)
 	}
 	*sub = '\0';
 }
-
-/*Frees and deletes all substrings that are already allocated and then
- frees array of piointers.*/
-// static void	free_all(char **ptr, int i)
-// {
-// 	int	j;
-
-// 	while (i > 0)
-// 	{
-// 		i--;
-// 		j = 0;
-// 		while (ptr[i][j])
-// 			ptr[i][j++] = 0;
-// 		free(ptr[i]);
-// 	}
-// 	j = 0;
-// 	while (ptr[j])
-// 		ptr[j++] = NULL;
-// 	free(ptr);
-// }
 
 char	**f_split(t_main *main, char const *s, char c)
 {

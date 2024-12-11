@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 13:26:18 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:35:02 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@
 # define SIGFAIL "signal function failed, exiting minishell"
 # define PIPEFAIL "pipe() failed, exiting minishell"
 # define FORKFAIL "fork() failed, exiting minishell"
+# define MISSINGFILEFAIL " No such file or directory"
+# define DIRFAIL " Is a directory"
+# define CMDFAIL " command not found"
+# define PERMDENIED " Permission denied"
+# define GENERICFILEFAIL " Failed to open file"
 
 # define SIGMODE_INTERACTIVE 1
 # define SIGMODE_RESET 2
