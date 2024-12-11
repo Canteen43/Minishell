@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:01:25 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/10 17:39:04 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:24:43 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	f_add_redirs_to_cmds(t_main *main)
 	t_tok	*current_cmd;
 
 	tok = main->tok_head;
-	current_cmd = sf_next_command(main, tok);
+	current_cmd = NULL;
 	while (tok)
 	{
 		next = tok->next;
 		if (tok->type == PIPE)
+			current_cmd = NULL;
+		else if (current_cmd == NULL)
 			current_cmd = sf_next_command(main, tok);
-		else if (f_tok_is_redir(tok))
+		if (f_tok_is_redir(tok))
 			sf_add_redir_to_cmd(main, tok, current_cmd);
 		tok = next;
 	}
@@ -38,14 +40,23 @@ void	f_add_redirs_to_cmds(t_main *main)
 
 static t_tok	*sf_next_command(t_main *main, t_tok *tok)
 {
-	while (tok && tok->type != COMMAND)
+	t_tok	*new;
+
+	if (tok->type == COMMAND)
+		return (tok);
+	while (tok->next && tok->next->type != COMMAND && tok->next->type != PIPE)
 		tok = tok->next;
-	if (tok == NULL)
+	if (tok->next && tok->next->type == COMMAND)
+		return (tok->next);
+	else
 	{
-		tok = f_tok_new(main, NULL);
-		tok->type = COMMAND;
+		new = f_tok_new(main, NULL);
+		new->type = COMMAND;
+		new->next = tok->next;
+		new->prev = tok;
+		tok->next = new;
 	}
-	return (tok);
+	return (new);
 }
 
 static void	sf_add_redir_to_cmd(t_main *main, t_tok *redir_tok, t_tok *cmd_tok)
