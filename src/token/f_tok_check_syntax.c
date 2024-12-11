@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:55:50 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 11:50:51 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:44:13 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	sf_pipe_after_pipe(t_tok *tok)
 	if (tok->type == PIPE
 		&& ((tok->prev && tok->prev->type == PIPE)
 			|| (tok->prev && tok->prev->type == WHITE
-				&& tok->prev->prev && tok->prev->prev->type == WHITE)))
+				&& tok->prev->prev && tok->prev->prev->type == PIPE)))
 		return (true);
 	return (false);
 }
@@ -72,6 +72,9 @@ static bool	sf_nothing_after_op(t_tok *tok)
 
 static int	sf_write_error_and_return(char *unex_tok)
 {
-	printf("Syntax error near unexpected token `%s'\n", unex_tok);
+	write(STDERR_FILENO, " syntax error near unexpected token `", 37);
+	write(STDERR_FILENO, unex_tok, f_strlen(unex_tok));
+	write(STDERR_FILENO, "'\n", 2);
+	// printf("Syntax error near unexpected token `%s'\n", unex_tok);
 	return (1);
 }
