@@ -95,9 +95,6 @@ SRC_FILES		+= utils/f_atoi.c
 SRC_FILES		+= utils/f_atoi_mod.c
 SRC_FILES		+= utils/f_array_length.c
 
-SRC_FILES		+= utils/get_next_line/get_next_line_utils.c
-SRC_FILES		+= utils/get_next_line/get_next_line.c
-
 SRC_FILES		+= execution/f_do_execute.c
 SRC_FILES		+= execution/f_handle_cmd.c
 SRC_FILES		+= execution/f_execution.c
