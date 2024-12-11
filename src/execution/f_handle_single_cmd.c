@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:09:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/11 13:42:50 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:04:01 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,24 @@ void	f_handle_single_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 	{
 		f_set_redirects(pipex, main, tok);
 		if (pipex->infile == -2 || pipex->outfile == -2)
+		{
 			main->exit_status = 1;
+			return ;
+		}
 		else
+		{
+			if (pipex->infile != -1)
+			{
+				dup2(pipex->infile, STDIN_FILENO);
+				close(pipex->infile);
+			}
+			if (pipex->outfile != -1)
+			{
+				dup2(pipex->outfile, STDOUT_FILENO);
+				close(pipex->outfile);
+			}
 			f_do_builtin(main, tok);
+		}
 		return ;
 	}
 	pid = fork();
