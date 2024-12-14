@@ -76,6 +76,8 @@ SRC_FILES		 += token/f_expandable_dollar_sign.c
 SRC_FILES		 += token/f_do_expansions_in_str.c
 SRC_FILES		 += token/f_is_operator.c
 SRC_FILES		 += token/f_do_expansions_for_toks.c
+SRC_FILES		 += token/f_delete_empty_tokens.c
+SRC_FILES		 += token/f_only_white_tokens.c
 
 SRC_FILES		+= utils/f_memcpy.c
 SRC_FILES		+= utils/f_strchr.c

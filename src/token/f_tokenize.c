@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 15:18:21 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:37:55 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	f_tokenize(t_main *main)
 	f_do_expansions_for_toks(main);
 	f_resolve_quotes(main);
 	f_join_tokens(main);
+	f_delete_empty_tokens(main);
+	if (f_only_white_tokens(main))
+		return (1);
 	f_delete_white_toks(main);
 	f_toks_to_cmds_n_args(main);
 	f_add_redirs_to_cmds(main);
