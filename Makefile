@@ -100,7 +100,6 @@ SRC_FILES		+= utils/f_array_length.c
 SRC_FILES		+= execution/f_do_execute.c
 SRC_FILES		+= execution/f_handle_cmd.c
 SRC_FILES		+= execution/f_execution.c
-SRC_FILES		+= execution/f_exit_clean.c
 SRC_FILES		+= execution/f_get_cmd_path.c
 SRC_FILES		+= execution/f_do_heredoc.c
 SRC_FILES		+= execution/f_init_pipex.c

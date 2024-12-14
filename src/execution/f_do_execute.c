@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:05:13 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/11 16:53:45 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/14 14:22:33 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	f_do_execute(t_main *main, t_pipex *pipex, t_tok *tok)
 	if (execve(cmd, tok->args, (char **)pipex->envp) == -1)
 	{
 		perror("execve failed");
-		f_exit_clean(pipex, 127);
+		exit(127);
 	}
 }
 

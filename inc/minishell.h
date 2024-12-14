@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/14 10:41:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:28:17 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,6 @@ char						*f_expandable_dollar_sign(char *str);
 bool						f_is_builtin(t_tok *tok);
 
 // execution
-void						f_exit_clean(t_pipex *pipex, int ecode);
 char						*f_get_cmd_path(t_main *main, char **paths,
 								char *in_cmd);
 int							f_open_file(t_pipex *pipex, char *filename, int i);
@@ -252,8 +251,7 @@ int							f_do_heredoc(t_main *main, t_tok *redir);
 void						f_handle_cmd(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_init_pipex(t_pipex *pipex, t_main *main);
-void						f_set_redirects(t_pipex *pipex, t_main *main,
-								t_tok *tok);
+void						f_set_redirects(t_pipex *pipex, t_tok *tok);
 void						f_do_execute(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_execution(t_main *main);

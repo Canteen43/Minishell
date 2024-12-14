@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   f_cd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 11:43:44 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/10 11:50:29 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:58:55 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	write_file_dir_error(t_main *main, char *path);
+
 void	f_cd(t_main *main, t_tok *tok)
 {
 	char	**args;
 	char	*path;
+	t_env	*pwd;
 
 	args = tok->args;
 	if (args[1] == NULL)
@@ -30,15 +33,20 @@ void	f_cd(t_main *main, t_tok *tok)
 		path = args[1];
 	if (chdir(path) == -1)
 	{
-		write(STDERR_FILENO, "minishell: cd: ", 15);
-		write(STDERR_FILENO, path, f_strlen(path));
-		write(STDERR_FILENO, ": No such file or directory\n", 28);
-		main->exit_status = 1;
+		write_file_dir_error(main, path);
 		return ;
 	}
-	f_env_find_key(main->env_head,
-			"OLDPWD")->value = f_env_find_key(main->env_head, "PWD")->value;
-	f_env_find_key(main->env_head, "PWD")->value = getcwd(NULL, 0);
+	pwd = f_env_find_key(main->env_head, "PWD");
+	f_env_find_key(main->env_head, "OLDPWD")->value = pwd->value;
+	pwd->value = getcwd(NULL, 0);
 	main->exit_status = 0;
 	return ;
+}
+
+static void	write_file_dir_error(t_main *main, char *path)
+{
+	write(STDERR_FILENO, "minishell: cd: ", 15);
+	write(STDERR_FILENO, path, f_strlen(path));
+	write(STDERR_FILENO, ": No such file or directory\n", 28);
+	main->exit_status = 1;
 }

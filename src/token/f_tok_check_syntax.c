@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tok_check_syntax.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:55:50 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 15:44:13 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:33:03 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ static int	sf_write_error_and_return(char *unex_tok)
 	write(STDERR_FILENO, " syntax error near unexpected token `", 37);
 	write(STDERR_FILENO, unex_tok, f_strlen(unex_tok));
 	write(STDERR_FILENO, "'\n", 2);
-	// printf("Syntax error near unexpected token `%s'\n", unex_tok);
 	return (1);
 }
