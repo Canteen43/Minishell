@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 17:13:17 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/14 10:41:37 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,12 +196,14 @@ int							f_atoi(const char *str);
 int							f_array_length(char **arr);
 
 // token
+bool						f_only_white_tokens(t_main *main);
 int							f_get_token_end(char *str, int start);
 int							f_tokenize(t_main *main);
 int							f_tok_add_back(t_main *main, char *str);
 t_tok						*f_tok_last(t_tok *tok);
 t_tok						*f_tok_new(t_main *main, char *str);
 void						f_print_tokens(t_main *main);
+void						f_delete_empty_tokens(t_main *main);
 void						f_create_tokens(t_main *main);
 int							f_tok_check_syntax(t_main *main);
 void						f_tok_remove_one(t_tok *tok);
