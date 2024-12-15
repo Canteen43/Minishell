@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tokenize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kweihman <kweihman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:00:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/14 10:37:55 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:57:13 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ there were no syntax errors. Returns 1 if input cannot be executed.*/
 // Add f_print_tokens(main); at any point to see what the tokens look like
 int	f_tokenize(t_main *main)
 {
-	f_create_tokens(main);
+	if (f_create_tokens(main))
+	{
+		main->exit_status = 2;
+		return (1);
+	}
 	f_unite_double_ops(main);
 	f_add_categories(main);
 	if (f_tok_check_syntax(main))
