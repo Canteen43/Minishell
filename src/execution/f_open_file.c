@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:13:20 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/11 16:39:20 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/15 16:06:39 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	f_open_file(t_pipex *pipex, char *filename, int i)
 			write(2, MISSINGFILEFAIL, f_strlen(MISSINGFILEFAIL));
 		else
 			write(2, GENERICFILEFAIL, f_strlen(GENERICFILEFAIL));
+		write(1, "\n", 1);
 	}
 	return (fd);
 }
