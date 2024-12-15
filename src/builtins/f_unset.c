@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:28:53 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/10 11:16:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:54:24 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	f_unset(t_main *main, t_tok *tok)
 			f_env_remove_one(main, node);
 		args++;
 	}
+	main->exit_status = 0;
 }
