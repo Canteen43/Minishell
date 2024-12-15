@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:55 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/15 11:59:59 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/15 12:09:12 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	sf_handle_waits(t_main *main, pid_t pid)
 {
 	int	wstatus;
 
+	wstatus = 0;
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		main->exit_status = WEXITSTATUS(wstatus);
