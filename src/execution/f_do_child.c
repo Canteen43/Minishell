@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:31:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/15 15:35:59 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:16:43 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	f_do_child(t_main *main, t_pipex *pipex, t_tok *tok, int is_final)
 {
+	f_signal_setup(SIGMODE_RESET);
 	if (tok->redir_head)
 		f_set_redirects(pipex, tok);
 	if (pipex->infile == -2 || pipex->outfile == -2)

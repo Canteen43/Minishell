@@ -20,7 +20,7 @@ int	f_do_builtin(t_main *main, t_tok *tok)
 		return (0);
 	is_builtin = 1;
 	if (strcmp(tok->str, "echo") == 0)
-		f_echo(tok);
+		f_echo(main, tok);
 	else if (strcmp(tok->str, "pwd") == 0)
 		f_pwd(main);
 	else if (strcmp(tok->str, "exit") == 0)

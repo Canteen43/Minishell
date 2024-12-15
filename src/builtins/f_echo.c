@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   f_echo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:19:20 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/09 15:15:26 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/15 18:11:17 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	f_echo(t_tok *tok)
+void	f_echo(t_main *main, t_tok *tok)
 {
 	char	**args;
 	int		i;
@@ -35,5 +35,6 @@ void	f_echo(t_tok *tok)
 	}
 	if (!n_flag)
 		printf("\n");
+	main->exit_status = 0;
 	return ;
 }

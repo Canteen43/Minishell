@@ -6,18 +6,13 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/15 14:51:30 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:12:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*Main loop runs as long as readline returns a line (i.e. until Ctrl-D is
-received). In the loop: First the readline return is added to gc, so that it
-will later be freed. Then non-empty lines will be added to the readline-builtin-
-history. Then tokenization happens. After that there is a list of tokens
-(commands and operators).
-*/
+bool	g_prompt_int_caught;
 
 int	main(int argc, char *argv[], char *env[])
 {
@@ -28,7 +23,10 @@ int	main(int argc, char *argv[], char *env[])
 	init(&main, env);
 	while (1)
 	{
+		g_prompt_int_caught = false;
 		main.user_input = readline(PROMPT);
+		if (g_prompt_int_caught)
+			main.exit_status = 130;
 		if (!main.user_input)
 			break ;
 		if (f_gc_add_node(&main, main.user_input) == NULL)
@@ -43,5 +41,4 @@ int	main(int argc, char *argv[], char *env[])
 		f_execution(&main);
 	}
 	f_exit(&main, NULL);
-	return (0);
 }

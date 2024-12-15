@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/15 15:47:50 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 18:11:29 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void						f_free_and_exit(t_main *main, char *message,
 void						f_exit(t_main *main, t_tok *tok);
 
 // builtins
-void						f_echo(t_tok *tok);
+void						f_echo(t_main *main, t_tok *tok);
 void						f_pwd(t_main *main);
 void						f_env(t_main *main);
 void						f_cd(t_main *main, t_tok *tok);
