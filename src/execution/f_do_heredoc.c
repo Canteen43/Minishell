@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:00:54 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/11 12:06:37 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:10:47 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	f_do_heredoc(t_main *main, t_tok *redir)
 		f_free_and_exit(main, FORKFAIL, 1);
 	if (pid == 0)
 		sf_read_heredoc(main, fd, redir->args[0]);
+	f_signal_setup(SIGMODE_WAITFORCHILD);
 	close(fd[1]);
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
@@ -35,6 +36,7 @@ int	f_do_heredoc(t_main *main, t_tok *redir)
 	if (main->exit_status != 0)
 		return (1);
 	redir->heredoc_fd = fd[0];
+	f_signal_setup(SIGMODE_INTERACTIVE);
 	return (0);
 }
 

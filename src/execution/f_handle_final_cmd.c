@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_handle_final_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:55 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/15 12:09:12 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/15 16:54:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	sf_handle_waits(t_main *main, pid_t pid)
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		main->exit_status = WEXITSTATUS(wstatus);
+	if (WIFSIGNALED(wstatus))
+		main->exit_status = WTERMSIG(wstatus) + 128;
 	while (wait(NULL) != -1)
 		;
+	f_signal_setup(SIGMODE_INTERACTIVE);
 }

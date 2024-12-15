@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:09:46 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/15 15:35:56 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:52:36 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ static void	sf_handle_wait(t_main *main, pid_t pid)
 {
 	int	wstatus;
 
+	f_signal_setup(SIGMODE_WAITFORCHILD);
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		main->exit_status = WEXITSTATUS(wstatus);
+	if (WIFSIGNALED(wstatus))
+		main->exit_status = WTERMSIG(wstatus) + 128;
+	f_signal_setup(SIGMODE_INTERACTIVE);
 }
