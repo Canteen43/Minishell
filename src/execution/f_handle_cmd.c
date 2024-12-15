@@ -6,13 +6,11 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:18:28 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/14 14:22:58 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/15 12:00:29 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	sf_prep_next_command(t_pipex *pipex);
 
 void	f_handle_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 {
@@ -29,11 +27,9 @@ void	f_handle_cmd(t_main *main, t_pipex *pipex, t_tok *tok)
 	else if (pid == 0)
 		f_do_child(main, pipex, tok, 0);
 	else
-		sf_prep_next_command(pipex);
-}
-
-static void	sf_prep_next_command(t_pipex *pipex)
-{
-	close(pipex->fd[1]);
-	dup2(pipex->fd[0], STDIN_FILENO);
+	{
+		close(pipex->fd[WRITE]);
+		dup2(pipex->fd[READ], STDIN_FILENO);
+		close(pipex->fd[READ]);
+	}
 }

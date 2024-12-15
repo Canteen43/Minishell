@@ -108,7 +108,6 @@ SRC_FILES		+= execution/f_set_redirects.c
 SRC_FILES		+= execution/f_do_builtin.c
 SRC_FILES		+= execution/f_handle_final_cmd.c
 SRC_FILES		+= execution/f_handle_single_cmd.c
-SRC_FILES		+= execution/f_find_final_cmd.c
 SRC_FILES		+= execution/f_do_child.c
 SRC_FILES		+= execution/f_resolve_heredocs.c
 

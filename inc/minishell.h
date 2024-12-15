@@ -6,7 +6,7 @@
 /*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/14 14:28:17 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/14 18:16:28 by glevin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define SIGMODE_RESET 2
 # define SIGMODE_WAITFORCHILD 3
 # define SIGMODE_HEREDOC 4
+# define READ 0
+# define WRITE 1
 
 // Env struct
 typedef struct s_environment
@@ -255,7 +257,6 @@ void						f_set_redirects(t_pipex *pipex, t_tok *tok);
 void						f_do_execute(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_execution(t_main *main);
-t_tok						*f_find_final_cmd(t_main *main);
 void						f_handle_final_cmd(t_main *main, t_pipex *pipex,
 								t_tok *tok);
 void						f_handle_single_cmd(t_main *main, t_pipex *pipex,
