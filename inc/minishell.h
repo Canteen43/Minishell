@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:54:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/15 15:36:07 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:47:50 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ t_tok						*f_tok_last(t_tok *tok);
 t_tok						*f_tok_new(t_main *main, char *str);
 void						f_print_tokens(t_main *main);
 void						f_delete_empty_tokens(t_main *main);
-void						f_create_tokens(t_main *main);
+int							f_create_tokens(t_main *main);
 int							f_tok_check_syntax(t_main *main);
 void						f_tok_remove_one(t_tok *tok);
 void						f_tok_remove_one(t_tok *tok);
