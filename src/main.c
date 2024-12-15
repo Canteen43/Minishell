@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/15 17:10:51 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:12:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,4 @@ int	main(int argc, char *argv[], char *env[])
 		f_execution(&main);
 	}
 	f_exit(&main, NULL);
-	return (0);
 }
