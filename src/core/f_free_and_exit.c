@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_free_and_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glevin <glevin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:03:37 by kweihman          #+#    #+#             */
-/*   Updated: 2024/12/11 16:41:17 by glevin           ###   ########.fr       */
+/*   Updated: 2024/12/16 10:33:24 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*Function to exit print an exit message, free everything with gc and exit.*/
 void	f_free_and_exit(t_main *main, char *message, int code)
 {
+	close(main->stdin_copy);
+	close(main->stdout_copy);
 	f_gc_clean(main);
 	if (message)
 	{

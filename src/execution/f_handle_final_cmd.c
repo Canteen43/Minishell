@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:55 by glevin            #+#    #+#             */
-/*   Updated: 2024/12/15 17:50:00 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:42:52 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sf_handle_waits(t_main *main, pid_t pid)
 	}
 	while (wait(&wstatus) != -1)
 	{
-		if (WIFSIGNALED(wstatus))
+		if (WIFSIGNALED(wstatus) && WTERMSIG(wstatus) != SIGPIPE)
 			newline_needed = true;
 	}
 	if (newline_needed)
